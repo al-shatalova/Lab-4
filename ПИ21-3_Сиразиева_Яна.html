@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный магазин</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Верхнее меню с поиском и несколькими пунктами -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">БОМБОРА</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Контакты</a>
+                </li>
+            </ul>
+            <!-- Поисковая строка -->
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Поиск" aria-label="Поиск">
+            </form>
+        </div>
+    </div>
+</nav>
+<div id="root"></div>
+
+<!-- Подключение Babel и React библиотек -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+
+<script type="text/babel">
+    function Card({ children }) {
+        return (
+            <div className="card">
+                {children}
+            </div>
+        );
+    }
+
+    function Avatar(props) {
+        return (
+            <img
+                src={props.src}
+                alt={props.alt}
+                style={{ maxWidth: '100%', height: 'auto', width: props.size }}
+                className="card-img-top"
+            />
+        );
+    }
+
+    function Book(props) {
+        const { title, description, avatarSrc } = props;
+        return (
+            <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <Card>
+                    <Avatar src={avatarSrc} alt={title} />
+                    <div className="card-body">
+                        <h5 className="card-title">{title}</h5>
+                        <p className="card-text">{description}</p>
+                    </div>
+                </Card>
+            </div>
+        );
+    }
+
+    function BookList() {
+        const booksRow1 = [
+            {
+                id: 1,
+                title: 'ТЕЛО ПОМНИТ ВСЁ',
+                description: 'Тело помнит все: какую роль психологическая травма играет в жизни человека и какие техники помогают ее преодолеть',
+                avatarSrc: 'https://cdn.eksmo.ru/v2/ITD000000000945111/COVER/cover1__w820.jpg'
+            },
+            {
+                id: 2,
+                title: 'КАФЕ НА КРАЮ ЗЕМЛИ',
+                description: 'Кафе на краю земли. Как перестать плыть по течению и вспомнить, зачем ты живешь',
+                avatarSrc: 'https://cdn.eksmo.ru/v2/ITD000000000859929/COVER/cover1__w820.jpg'
+            },
+            {
+                id: 3,
+                title: 'СИЛА ПОДСОЗНАНИЯ 2',
+                description: 'Сила подсознания 2, или Как продолжить изменять жизнь за следующие 4 недели',
+                avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/e08/300_408_1/cover3d.jpg'
+            },
+            {
+                id: 4,
+                title: 'САМЫЙ БОГАТЫЙ ЧЕЛОВЕК В ВАВИЛОНЕ 2',
+                description: 'Самый богатый человек в Вавилоне 2: Возвращение легенды',
+                avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/9ee/kvugh4phf0nct3zjn8jqtuhgu2dgjd59/300_408_1/cover3d.jpg'
+            },
+        ];
+
+        const booksRow2 = [
+            {
+                id: 5,
+                title: 'НОВОСТИ ДНЯ',
+                description: '',
+                avatarSrc: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAADCCAMAAACYEEwlAAAAMFBMVEX/AID9AX3+AYLpCnn5AoT3BHz/AIH5A4D8An74BXzpCXzpCnb3BX7/AIPnBnnvD4Ij+mcRAAACFElEQVR4nO3cgUobQRgA4blNs7nGxL7/2/YclaQFQSmYws2AJGzIuX78hujpcb4s6wnmZMeFQAgWwtbzKQR+hdC3g52bhO014bKM02TdNcLhyPgxWNZHb+SRhUAIFgIhWAiEYCEQgoVACBYCIVgIhGAhEIKFQAgWAiFYCIRgIRCChUAIFsLW4RJCk/BSCIRgvSbQJFgIhGAhEIKFQAgWAiFYCIRgIRCChUAIFgL9UsWaBEKwEAjBQiAEC4EQLARCsBAIwUIgBAuBECwEQrAQCMFCIAQLgRAsBEKwEAjBOiFLk2AhEIK9IOz+Gq1PPzeEhet49EYeWQiEYCEQgoVACPaGMHaN0DtGQrAQCMFCIAQLgRAsBEKwEAjBQiAEC4EQLARCsBAIwUIgBAuBECwEQrAQCMFCIAQLgRAsBEKwEAjBQiAEC4EQLAT6bzhrEgjBQiAEC4EQLARCsBAIwUIgBAuBECyErecQ4HxZ1t1fTmRDWEJoEpoEaxIIwUIgBNsQxmmy7hqht82EYCEQgoVACBYC/ZGGNQmEYCEQgoVACBYCIVgIhGAhEIL1AxRNgh2OM4QQEOH09TNQc/7zKav7Q2x3lsUbl6cLvO7KB+b7woeb+Pp+lttdEe6v6r/c9eEBxhj3T7g97dNbmPeHGD59+xK3j+t1W39bGO8PjMnr7d+bmLfD8bnPv/yZa09H/juE+c0IvwF05RfSIBwkmQAAAABJRU5ErkJggg=='
+
+            },
+            {
+                id: 6,
+                title: 'БЕСТЕЛЛЕРЫ',
+                description: '',
+                avatarSrc: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0IBwcHBw0IBwcHBw0HBwcHCA8ICQcNFREWFhURExMYHSggGBoxGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDg0NDysZFRk3LTcrLTcrLS0rKystKy0rKysrKys3LSsrLSsrKysrKysrKysrKysrLSsrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAQIDBAb/xAAYEAEBAQEBAAAAAAAAAAAAAAAAEQECIf/EABsBAQEBAQEAAwAAAAAAAAAAAAABAgMEBQYH/8QAGhEBAQEAAwEAAAAAAAAAAAAAABEBAxITAv/aAAwDAQACEQMRAD8A+Q3GdxvWNfqOPquOesbjprGumOmOesa6axreOmMiiqzCKQVIRQEhFFEhFVBmEUBIRoBCKQSpBVBBSAiioiQigJBqAVrnXTHHHTnWdx24/t0iIrD0dnbWdb1jWcfEY56xrprGt46Y56zres63jpjIqKqCgIRRVQUBBREQVQQUBBQEUUEIoiAoFQiggKIIueALmtUZCOnpr2axres6448eOes63rOt43jnrLepuNtsQjUFWsQaILWRYQEFAQUBFAAFBCKCAoCCiAKAgoICgIKIILBSvXrGumsa444YxrOt6zrWN4xrLe4jTTEI1BVrBGoRVrMSNQgMigrIooigACoIoACggKIBFBEgoAKIIKojMUig9Os63rOuWOOMazrepuNY1jnuJG0jTVZiRqEFrMSNQVayjRBWUjQtGUahFWswjUIUrI1CBUFggCggKIIosEQiqCCkREVQERoB6dZ1vWdcnHGNTW9Z1prGUjUSKtZhFItVmI2grMRqEVazEahArMI1EirUiNxIFRI1CBWYRqECsqsWBWVWEREUUEUURIoqCCgiCgPTqa0m45OOMajWo00wNRFWspG4grKNQirWUahBWRYRaVIkahClZhGoQozCNAtZhGiBWYsWEEqQiwCoRYQogqwEUEQFICCqD0xmNxI5ODG4zuNpFazWIRqJFaZiRtIpWYkbiQWsjUSKVkjUILWYRqJAqRI1AKzCNQgVmLFhAqQjUSBUhGoQKzCNQBkjUAZVQEFICCgPUkbSOLhWNxI2kVaxEjcSLVrEI0RatYhGoRatZiRuJClZhGoQpWIRuJCrWYRqECswjUItKzCNEQrMI1CKVmEahAZhGiAzCNQBmKpEEFAZGkUeuG40OFeesJG4zFrVZiRqEWrWIRqEWlYhGoQWsxI3Ei0rMI1CFWswjUIUrEI1CFKzCNQhVrMI1CKVmEahClZhFgUqRI0QpWRoKVmEaIUqRI0BWYKC17EjRHF5qzEjcSFWsRI3CLVrESNxItWsQjcIUrEI1CLVrEI1CBWYRqEKViEahCrWYRqEWlZhGoQpWYRYQGYRqEKVmEahBWYRqAMwjUSAkSNRAZFFV7AHF5wQAQFUQBRFFEFBURQEABIQFUhABAAAFAAAQFAAAARNBVZUFaf/2Q=='
+            },
+            {
+                id: 7,
+                title: 'ЧТО МЫ ЧИТАЕМ?',
+                description: '',
+                avatarSrc: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQcHDgcNDisZFRkrKysrKysrNysrKysrKysrKysrKysrNysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAMABBgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAAAQb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAcG/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A3YCeNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKiggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACooIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqKCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACooIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqKCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKiggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACooIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKig//Z'
+            },
+            {
+                id: 8,
+                title: 'СОВЕТЫ НАШИХ ПОКУПАТЕЛЕЙ',
+                description: '',
+                avatarSrc: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkGCA0FBgYGBg8ICRANFBEWFhQRExMYHCggGBolGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw0NDysZFRkrKzcrKy0rLS0tNystLS0rKysrLSstLSsrKysrKysrKysrKy0rKysrKysrKysrKysrK//AABEIAMIBBAMBEQACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAAAQb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAECBv/EABsRAQEBAAIDAAAAAAAAAAAAAAABETFhEiFB/9oADAMBAAIRAxEAPwDJuk5913oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJoKCAaCgmgaCgmgAoJoAKCaACgmgAoJoAKCaCgAmgoIBoAKIlBBVEKCCqIlBRQRKCiqIyCiqIyCiqIzgKKCJgKKURAUCggqiFBAUVQAQAAAFBAAUEABQQAFBAAUEABQQAFBAAUEAAAABQQQ0UAtENFUAElAtENFUAE0AQ0UBQS0QFUEtBQS0QFUAE0AFBNBQZ8oDQiUEFUQoAoCiICUAVQURASgCqCiMgoqglEAQFFUEEQFFURAFGcRWwAQFABAUAEEABQFBBAAUBQQAFABBAAVQAQAFABBAVQSiJoqgWiGiqCWiAAAoCglogAKAoJaICqCaIAACqAIzoqgojOgoAqiJQBQQAFBAAAAUBREAAFAURABQRAUAAVQQRAUUEQFAFUAEBQAQFAAABAUAEBQAAAAQFAABAUAAEBQAQFAABKIgqgWiIKoKCSgWiIKoFoiCqCiM6CiqIzoKKoJREFUFBnkGgBGdBRVAABBAUEABQFEQEAFUQAFAURABVEQAVQQQFAURBQFEQAVQAAAAAAAAABEAFAUAAAAAAAAAAAAAAAEtwRAUVQAASiIKoFEQVQKIAACgKIzQUVRGQUVRGQUVRGQUUEQFFKqJO0FAFUAAEEBQQAFBAAAAUBREAFURABVEQAUEABQQAFBAAAVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASiIKoFEQVQUEgFESCqBREFURKCiqCUCAlEBWgBGQUVQSgCJ9BRVEYuitgggKCAAoCiICACqIACggAKoAiAgKKoAiACqCCAICiqIgqgAAAAAAACIAKAoAAAAAAAiACqAAAAAAIgAqgAAlEQVQKIgqiJQAUAUBRGaCiqCCIKoFEQFFUARkFFURkFAAFUAAEEBQAQFBAAAAUBREAFUEEABQQAFUARABVEQAAAVQAAAQFABAUAAAEBQAQFABAUAEBQAQFABAUAAEBQAAASiIKohQQVQBEgFAgqiJQBVESgCqIlBRVBBEBRSiICiqIzQBWgSiAqgggKACAqgCIAAKACAqiIAKoiACqAIgAoICgKIgAqgCIKoAAAAAAAAIICgKAAAAAAAAAAAAAAAAAAAA/9k='
+            },
+        ];
+
+        return (
+            <div className="container">
+                <div className="row">
+                    {booksRow1.map((book) => (
+                        <Book key={book.id} {...book} size='100%'/>
+                    ))}
+                </div>
+                <div className="row mx-auto justify-content-around">
+                    {booksRow2.map((book) => (
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-4" key={book.id}>
+                            <Card>
+                                <Avatar src={book.avatarSrc} alt={book.title} size='200px'/>
+                                <div className="card-body">
+                                    <h5 className="card-title">{book.title}</h5>
+                                    <p className="card-text">{book.description}</p>
+                                </div>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<BookList />, document.getElementById('root'));
+</script>
+</body>
+</html>
