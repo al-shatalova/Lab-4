@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<!--  <link href="style.css" rel="stylesheet">-->
+  <meta charset="UTF-8">
+  <title>КНИzhНЫЙ</title>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script type="text/babel">
+    const h1 = 300;
+    const w1 = 200;
+    const h2 = 400;
+    const w2 = 300;
+    const book1 = {title: 'Общество контроля. Как сохранить конфиденциальность в эпоху тотальной слежки', author: 'Джон Фасман', price: '890', image: 'https://bombora.ru/upload/adwex.minified/webp/326/80/326aa84ce764b3dbf24124303df833bb.webp', height: h1, width: w1};
+    const book2 = {title: 'Как подружить гены в клетках. Коктейль молодости, светящиеся котики, напечатанные органы и другие прелести науки', author: 'Ангелина Потапова', price: '942', image: 'https://bombora.ru/upload/adwex.minified/webp/baf/80/baf0e10bd289292406076011d9a7f5c9.webp', height: h1, width: w1};
+    const book3 = {title: 'Кокетливый интеллект. Как научить искусственный интеллект флиртовать?', author: 'Джанель Шейн', price: '810', image: 'https://bombora.ru/upload/adwex.minified/webp/602/80/60204784e15366a37131b61a10701ea2.webp', height: h1, width: w1};
+    const book4 = {title: 'Мозг игрока. Как нейронауки и UX влияют на дизайн видеоигр', author: 'Селия Ходент', price: '1302', image: 'https://bombora.ru/upload/adwex.minified/webp/988/80/9885c55bdf650078a052b7e03046ad72.webp', height: h1, width: w1};
+    const book5 = {title: 'Антропология киборга. Руководство по протезированию верхних конечностей', author: 'Антон Круглов', price: '4292', image: 'https://bombora.ru/upload/adwex.minified/webp/16b/80/16b951121b28f763fcc147e6d9023b71.webp', height: h2, width: w2};
+    const book6 = {title: 'Как ГМО спасают планету и почему люди этому мешают', author: 'Анна Иванова', price: '726', image: 'https://bombora.ru/upload/adwex.minified/webp/3c7/80/3c74139e517005ab6f3ab71a81f76cd2.webp', height: h2, width: w2};
+    const book7 = {title: 'Архитектура компьютерных систем. Как собрать современный компьютер по всем правилам', author: 'Лиам Ниссон', price: '1672', image: 'https://bombora.ru/upload/adwex.minified/webp/65e/80/65e73600c2273655065816fb0db018eb.webp', height: h2, width: w2};
+    const book8 = {title: 'Автоматизация рутины в Excel VBA. Лайфхаки для облегчения скучных рабочих задач', author: 'Виктор Шитов', price: '954', image: 'https://bombora.ru/upload/adwex.minified/webp/59d/80/59df239f007f85bac20dc425e578ab0a.webp', height: h2, width: w2};
+    function Card(children){
+      return(
+              <div style={{paddingBottom:100}}> {children} </div>
+      );
+    }
+    function BookItem(props) {
+      return (
+              <td className="book-item">
+                <div className="card" style={{ textAlign: "left", height: 680}}>
+                  <div style={{ textAlign: "center"}}>
+                    <img src={props.image}
+                         alt={props.title}
+                         height={props.height}
+                         width={props.width}
+                    />
+                  </div>
+
+                  <div className="card-body">
+                    <h2>{props.title}</h2>
+                    <p>{props.author}</p>
+                    <h3>{props.price} руб.</h3>
+                  </div>
+                </div>
+              </td>
+      );
+    }
+    class Nav extends React.Component {
+
+      render() {
+        return(
+                <nav className="py-2 bg-body-tertiary border-bottom text-bg-dark">
+                  <div className="container d-flex flex-wrap ">
+                    <ul className="nav me-auto">
+                      <li className="nav-item">
+                        <a
+                                href="#"
+                                className="nav-link link-body-emphasis px-2 active"
+                                aria-current="page"
+                        >
+                          Главная
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          Жанры
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          Акции
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          Новинки
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          О нас
+                        </a>
+                      </li>
+                    </ul>
+                    <ul className="nav">
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          Войти
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a href="#" className="nav-link link-body-emphasis px-2">
+                          Зарегистрироваться
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+        );
+      }
+    }
+    class Header extends React.Component {
+      render() {
+        return (
+                <header className="py-3 mb-4 border-bottom">
+                  <div className="container d-flex flex-wrap justify-content-center">
+                    <a
+                            href="/"
+                            className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none"
+                    >
+                      <svg className="bi me-2" width={40} height={32}>
+                        <use xlinkHref="#bootstrap" />
+                      </svg>
+                      <span className="fs-4">BookStore</span>
+                    </a>
+                    <form className="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                      <input
+                              type="search"
+                              className="form-control"
+                              placeholder="Поиск..."
+                              aria-label="Поиск"
+                      />
+                    </form>
+                  </div>
+                </header>
+        );
+      }
+    }
+
+    class Footer extends React.Component{
+      render() {
+        return(
+                <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+                  <div className="col mb-3">
+                    <a
+                            className="nav-link p-1 text-body-primary">
+                      BookStore
+                    </a>
+                    <p className="text-body-secondary">© 2023</p>
+                  </div>
+                  <div className="col mb-3"></div>
+                  <div className="col mb-3">
+                    <h5>Издательство</h5>
+                    <ul className="nav flex-column">
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          О нас
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Наши ипринты
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Контакты
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Корпоративным клиентам
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col mb-3">
+                    <h5>Читателям</h5>
+                    <ul className="nav flex-column">
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Нащи книги
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Нащли ошибку на сайте?
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Нашли ошибку в книге?
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Политика конфиденциальности
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col mb-3">
+                    <h5>Авторам</h5>
+                    <ul className="nav flex-column">
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Блогерам
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Как опубликовать книгу
+                        </a>
+                      </li>
+                      <li className="nav-item mb-2">
+                        <a href="#" className="nav-link p-0 text-body-secondary">
+                          Коммерческие услуги авторам
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </footer>
+        );
+      }
+    }
+
+    class Books extends React.Component {
+      render(){
+        return(
+                <Card>
+                  <h1 style={{paddingTop:50}}>Бестселлеры</h1>
+                  <table className="products my-lg-5">
+                    <tbody>
+                    <tr>
+                      <BookItem {...book1} />
+                      <BookItem {...book2} />
+                      <BookItem {...book3} />
+                      <BookItem {...book4} />
+                    </tr>
+                    </tbody>
+                  </table>
+                  <h1 style={{paddingTop:50}}>Новинки</h1>
+                  <table className="products my-lg-5">
+                    <tbody>
+                    <tr>
+                      <BookItem {...book5} />
+                      <BookItem {...book6} />
+                      <BookItem {...book7} />
+                      <BookItem {...book8} />
+                    </tr>
+                    </tbody>
+                  </table>
+                </Card>
+
+        );
+      }
+    }
+    class App extends React.Component{
+      render() {
+        return (
+                <div>
+                  <Nav />
+                  <Header />
+                  <Books />
+                  <Footer />
+                </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
