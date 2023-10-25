@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-left mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Магазин</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Корзина</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Блог</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Афиша</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Спонсоры</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">О нас</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0">
+          <input type="search" class="form-control form-control-dark" placeholder="Что читаем..." aria-label="Search">
+        </form>
+      </div>
+    </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-center" style="text-align: center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Книги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Журнады</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Публикации</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Авторы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Интервью</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Обзоры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Отрывки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Артикли</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div id="root"></div>
+</body>
+<!-- This setup is not suitable for production. -->
+<!-- Only use it in development! -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+    import React, { StrictMode } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    export function getImageUrl(person) {
+        return (
+            person.imageId
+        );
+    }
+
+    function Card({ children }) {
+        return (
+            <div className="container">
+                {children}
+            </div>
+        );
+    }
+
+    function Volume({book, size = 150}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 50}
+                />
+                <p>{book.author}</p>
+                <p>{book.name}</p>
+                <p>{book.price}</p>
+            </div>
+        );
+    }
+
+    function BigBook({book, size = 350}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 50}
+                />
+                <p>{book.name}</p>
+                <p>{book.author}</p>
+                <p>{book.price}</p>
+                <p>{book.rating}</p>
+            </div>
+        );
+    }
+
+
+    export default function Profile() {
+        return (
+            <body>
+            <h1>Наши рекомендации</h1>
+            <Card>
+                <Volume
+                    book={{
+                        name: 'Безглютеновый хлеб',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/830/80/8304a14dd5df43afd563a06e3aeeaa9a.webp',
+                        author: 'Мерзляк И. А.',
+                        price: '3400₽'
+
+                    }}
+                />
+                <Volume
+                    book={{
+                        name: 'Дуэль нейрохирургов',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/0b5/80/0b50d96f97f5bd6f55eccc665145bdf3.webp',
+                        author: 'Мельников Н. В.',
+                        price: '2500₽'
+
+                    }}
+                />
+                <Volume
+                    book={{
+                        name: 'Дикий чай',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/a17/80/a1743d98c05cf87426aaa405a80ae7ea.webp',
+                        author: 'Блохин Д. В.',
+                        price: '4999₽'
+                    }}
+                />
+                <Volume
+                    book={{
+                        name: 'Искусство коктеля',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/1df/80/1df7a6f3ed8171b47c1990b188f4519f.webp',
+                        author: 'Гущина А. Ю.',
+                        price: '2854₽'
+                    }}
+                />
+                <Volume
+                    book={{
+                        name: 'Иди туда, где страшно',
+                        imageId: 'https://bombora.ru/upload/resize_cache/iblock/7ef/300_408_1/cover3d.jpg',
+                        author: 'Копылов А. М.',
+                        price: '932₽'
+                    }}
+                />
+                <Volume
+                    book={{
+                        name: 'Будущее россии после COVID-19',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/7ac/80/7ac0ad620ab92d2a7e5e74389307f350.webp',
+                        author: 'Красильникова А. А.',
+                        price: '6464₽'
+                    }}
+                />
+            </Card>
+
+            <h1>Топ продаж</h1>
+            <Card>
+                <BigBook
+                    book={{
+                        name: 'Виномания',
+                        imageId: 'https://bombora.ru/upload/resize_cache/iblock/757/fx4l4rvzr4oz5xsngxmbxkatqs6a3d2s/300_408_1/cover3d.jpg',
+                        author: 'Субботина К. В.',
+                        price: '8285₽',
+                        rating: '4.74 из 5'
+                    }}
+                />
+                <BigBook
+                    book={{
+                        name: 'Я опасен для общества',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/845/80/84579e41abf6f116eaf24397b33102c5.webp',
+                        author: 'Перов А. В.',
+                        price: '6623₽',
+                        rating: '4.9 из 5'
+                    }}
+                />
+                <BigBook
+                    book={{
+                        name: 'НИ СЫ... или история моего успеха',
+                        imageId: 'https://bombora.ru/upload/resize_cache/iblock/2ef/300_408_1/cover3d.jpg',
+                        author: 'Донскова Г. А.',
+                        price: '1221₽',
+                        rating: '4.64 из 5'
+                    }}
+                />
+            </Card>
+            </body>
+        );
+    }
+
+
+    const root = createRoot(document.getElementById('root'));
+    root.render(
+        <StrictMode>
+            <Profile />
+        </StrictMode>
+    );
+
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    h3 {
+        margin-top: 0;
+        font-size: 18px;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 16px;
+    }
+
+    h5 {
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    h6 {
+        margin-top: 0;
+        font-size: 12px;
+    }
+
+    code {
+        font-size: 1.2em;
+    }
+
+    ul {
+        padding-inline-start: 20px;
+    }
+
+    ul { list-style-type: none; padding: 0px 10px; }
+    li {
+        margin-bottom: 10px;
+        display: inline-flex;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-item {
+        padding-left: 80px
+    }
+
+    .a {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    .card {
+        display: inline-flex;
+        width: fit-content;
+        margin: 5px;
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #aaa;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .avatar {
+        margin: 20px;
+        border-radius: 0%;
+    }
+
+
+</style>
+</html>
