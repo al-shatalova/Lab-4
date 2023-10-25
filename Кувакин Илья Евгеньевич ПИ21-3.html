@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Главная<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">По жанрам</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Отзывы
+                    </a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            </form>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto" style="text-align: center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Популярно</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Всех времён</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Лучшие авторы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Помощь проекту</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Вопросы и ответы</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<div id="root"></div>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+    import React, { StrictMode } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    export function getImageUrl(person) {
+        return (
+            person.imageId
+        );
+    }
+
+    function Card({ children }) {
+        return (
+            <div className="container">
+                {children}
+            </div>
+        );
+    }
+
+    function Avatar({book, size = 160}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 50}
+                />
+                <p>{book.name}</p>
+            </div>
+        );
+    }
+
+    function Avatar2({book, size = 300}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 100}
+                />
+                <p>{book.name}</p>
+            </div>
+        );
+    }
+
+
+
+    export default function Profile() {
+        return (
+            <body>
+            <h1>Дикая Природа и Коты - Лучшее Сочетание!</h1>
+            <Card>
+                <Avatar
+                    book={{
+                        name: 'Стань Диким!',
+                        imageId: '1.jpg'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Знак Трёх',
+                        imageId: '5.jpg'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Сверкающая звезда',
+                        imageId: '6.jpg'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Рассвет',
+                        imageId: '7.jpg'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Время выбора',
+                        imageId: '8.jpg'
+                    }}
+                />
+            </Card>
+            <h1>Пригодится в походе</h1>
+            <Card>
+                <Avatar2
+                    book={{
+                        name: 'Выжить любой ценой',
+                        imageId: '2.jpg'
+                    }}
+                />
+                <Avatar2
+                    book={{
+                        name: 'Жизнь в дикой природе',
+                        imageId: '3.jpg'
+                    }}
+                />
+                <Avatar2
+                    book={{
+                        name: 'Истинное мужество',
+                        imageId: '4.jpeg'
+                    }}
+                />
+            </Card>
+            </body>
+        );
+    }
+
+
+    const root = createRoot(document.getElementById('root'));
+    root.render(
+        <StrictMode>
+            <Profile />
+        </StrictMode>
+    );
+
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    h3 {
+        margin-top: 0;
+        font-size: 18px;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 16px;
+    }
+
+    h5 {
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    h6 {
+        margin-top: 0;
+        font-size: 12px;
+    }
+
+    code {
+        font-size: 1.2em;
+    }
+
+    ul {
+        padding-inline-start: 20px;
+    }
+
+    ul { list-style-type: none; padding: 0px 10px; }
+    li {
+        margin-bottom: 10px;
+        display: inline-flex;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-item {
+        padding-left: 80px
+    }
+
+    .a {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    .card {
+        display: inline-flex;
+        width: fit-content;
+        margin: 5px;
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #aaa;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .avatar {
+        margin: 20px;
+        border-radius: 0%;
+    }
+
+</style>
+</body>
+</html>
