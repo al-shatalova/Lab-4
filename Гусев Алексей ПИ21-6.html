@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный магазин</title>
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    >
+    <style>
+        .navbar {
+          background-color: rgb(251, 116, 116) !important;
+        }
+        body {
+            background-color: rgb(207, 207, 207);
+        }
+        .row.book-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        }
+
+        .col-md-3.book-card,
+        .col-md-2.book-card {
+        flex: 1;
+        margin-bottom: 15px;
+        }
+
+        .card {
+        height: 100%;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div id="root"></div>
+  
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  
+    <script type="text/babel">
+      const { useState, Component } = React;
+
+      function FilterFormYear({ yearFilter, setYearFilter}) {
+      return (
+        <form className="form-inline mb-3">
+          <div className="form-group col">
+            <label htmlFor="filter-year" className="mr-2">Поиск. Введите год издания</label>
+            <input
+              type="number"
+              id="filter-year"
+              value={yearFilter}
+              onChange={(e) => setYearFilter(e.target.value)}
+              className="form-control w-100"
+            />
+          </div>
+        </form>
+      );
+    }
+
+    function FilterFormSearch({searchFilter, setSearchFilter }) {
+      return (
+        <form className="form-inline my-2 my-lg-0 ml-auto">
+          <div className="form-group">
+            <label htmlFor="filter-search" className="mr-2" style={{ color: "white" }}>Введите жанр:</label>
+            <input
+              type="text"
+              id="filter-search"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              className="form-control"
+            />
+          </div>
+        </form>
+      );
+    }
+  
+      class TogglePhotoMode extends Component {
+        render() {
+          const { photoMode, setPhotoMode } = this.props;
+          return (
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                checked={photoMode}
+                onChange={() => setPhotoMode(!photoMode)}
+                className="form-check-input"
+                id="photo-mode"
+              />
+              <label htmlFor="photo-mode" className="form-check-label">
+                Обложки книг
+              </label>
+            </div>
+          );
+        }
+        
+      }
+  
+      function BookCard({ book, photoMode }) {
+        const handleBuyClick = () => {console.log(`Вы купили книгу: ${book.name}`);
+        }
+        return (
+        <div className="col-md-3 mb-3">
+        <div className="card">
+            {photoMode && (
+            <img
+                src={book.photo}
+                alt={book.name}
+                className="card-img-top"
+            />
+            )}
+            <div className="card-body">
+            <h5 className="card-title">{book.name}</h5>
+            <p className="card-text">Год: {book.year}</p>
+            <p className="card-text">Жанр: {book.genre}</p>
+            <button
+                className="btn btn-primary"
+                onClick={handleBuyClick}
+            >
+            Купить
+            </button>
+        </div>
+      </div>
+    </div>
+        );
+      }
+
+      function BookCardd({ book, photoMode }) {
+        const handleBuyClick = () => {console.log(`Вы купили книгу: ${book.name}`);
+        }
+
+        return (
+            <div className="col-md-2 mb-3">
+            <div className="card">
+                {photoMode && (
+                <img
+                    src={book.photo}
+                    alt={book.name}
+                    className="card-img-top"
+                />
+                )}
+                <div className="card-body">
+                <h5 className="card-title">{book.name}</h5>
+                <p className="card-text">Год: {book.year}</p>
+                <p className="card-text">Жанр: {book.genre}</p>
+            <button
+                className="btn btn-primary"
+                onClick={handleBuyClick}
+            >
+                Купить
+            </button>
+            </div>
+        </div>
+    </div>
+  );
+}
+
+  
+      function BooksList({ books, yearFilter, searchFilter, photoMode }) {
+        const filteredBooks = books.filter(
+          (book) =>
+            (!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))
+        );
+        const firstFourBooks = filteredBooks.slice(0, 4);
+        return (
+          <div className="row">
+            {firstFourBooks.map((book, index) => (
+              <BookCard
+                key={index}
+                book={book}
+                photoMode={photoMode}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      function BooksListt({ books, yearFilter, searchFilter, photoMode }) {
+        const filteredBooks = books.filter(
+          (book) =>
+            (!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))
+        );
+  
+        return (
+          <div className="row">
+            {filteredBooks.map((book, index) => (
+              <BookCardd
+                key={index}
+                book={book}
+                photoMode={photoMode}
+              />
+            ))}
+          </div>
+        );
+      }
+      // передача данных
+      function Statistics({ books, yearFilter, searchFilter }) {
+        const genreCount = {};
+  
+        for (const book of books) {
+          if ((!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))) {
+            if (genreCount[book.genre]) {
+                genreCount[book.genre]++;
+            } else {
+                genreCount[book.genre] = 1;
+            }
+          }
+        }
+  
+        const statisticsList = Object.keys(genreCount).map((genre) => (
+          <li key={genre}>
+            {genre}: {genreCount[genre]}
+          </li>
+        ));
+  
+        return (
+          <div>
+            <h3>Доступно на сайте:</h3>
+            <ul>{statisticsList}</ul>
+          </div>
+        );
+      }
+  
+      function App() {
+        const books = [
+            { name: "Девять историй", year: 1954, genre: "Проза", photo: "девять_историй.jpg" },
+            { name: "Азазель", year: 1998, genre: "Детектив", photo: "азазель.jpg" },
+            { name: "Маленькие женщины", year: 1868, genre: "Роман", photo: "маленькие_женщины.jpg" },
+            { name: "Заводной апельсин", year: 1962, genre: "Научная фантастика", photo: "заводной_апельсин.jpg" },
+            { name: "Дом, в котором", year: 1985, genre: "Драма", photo: "дом_в_котором.jpg" },
+            { name: "Мастер и Маргарита", year: 1967, genre: "Сатира", photo: "мастер_и_маргарита.jpg" },
+            { name: "1984", year: 1949, genre: "Антиутопия", photo: "1984.jpg" },
+            { name: "Над пропастью во ржи", year: 1951, genre: "Драма", photo: "над_пропастью_во_ржи.jpg" },
+            { name: "Гарри Поттер и философский камень", year: 1997, genre: "Фэнтези", photo: "гарри_поттер_и_философский_камень.jpg" },
+            { name: "Цветы для Элджернона", year: 1958, genre: "Научная фантастика", photo: "цветы_для_элджернона.jpg" },
+            { name: "Гарри Поттер и философский камень", year: 1997, genre: "Фэнтези", photo: "гарри_поттер_и_философский_камень.jpg" },
+            { name: "Цветы для Элджернона", year: 1958, genre: "Научная фантастика", photo: "цветы_для_элджернона.jpg" },
+        ];
+
+  
+        const [yearFilter, setYearFilter] = useState("");
+        const [searchFilter, setSearchFilter] = useState("");
+        const [photoMode, setPhotoMode] = useState(false);
+  
+        return (
+
+        <div>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a className="navbar-brand" href="#">Книжный магазин</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Личный кабинет <span className="sr-only">(current)</span></a>
+                </li>
+              </ul>
+              <FilterFormSearch
+                searchFilter={searchFilter}
+                setSearchFilter={setSearchFilter}
+              />
+            </div>
+          </nav>
+          <div className="container mt-4">
+    <h1 className="text-center">Магазин Гусева Алексея</h1>
+
+    <FilterFormYear
+        yearFilter={yearFilter}
+        setYearFilter={setYearFilter}
+    />
+
+    <TogglePhotoMode photoMode={photoMode} setPhotoMode={setPhotoMode} />
+    <h4 className="text-center">Популярное для Вас:</h4>
+
+
+    <BooksList
+    books={books}
+        yearFilter={yearFilter}
+        searchFilter={searchFilter}
+        photoMode={photoMode}
+    />
+
+    <Statistics
+        books={books}
+        yearFilter={yearFilter}
+        searchFilter={searchFilter}
+    />
+</div>
+<div className="containerr mt-4">
+    <h1 className="text-center">Магазин</h1>
+
+    <BooksListt
+        books={books}
+        yearFilter={yearFilter}
+        searchFilter={searchFilter}
+        photoMode={photoMode}
+    />
+    </div>
+</div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</body>
+</html>
