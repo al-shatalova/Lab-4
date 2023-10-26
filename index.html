@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Книжный магазин</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/babel">
+
+    function Book({title, author, price, image, ...props}) {
+        const {size } = props;
+
+        const cardStyle = {
+            width: `${size}px`,
+        };
+
+        const imageStyle = {
+            width: "100%",
+            height: "auto",
+        };
+
+        return (
+            <div className="card" style={cardStyle}>
+                <img src={image} className="card-img-top" alt={title} style={imageStyle}/>
+                <div className="card-body">
+                    <h5 className="card-title">{title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{author}</h6>
+                    <p className="card-text">Цена: {price} руб.</p>
+                </div>
+            </div>
+        );
+    }
+
+    function UpcomingBook({title, author, price, image, ...props}) {
+        const cardTextStyle = {
+            fontSize: "16px", //
+        };
+        return (
+            <div className="card" style={{width: "12rem", margin: "12px"}}>
+                <img src={image} className="card-img-top" alt={title} style={{height: "200px"}} {...props} />
+                <div className="card-body">
+                    <h5 className="card-title" style={cardTextStyle}>{title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{author}</h6>
+                    <p className="card-text" style={cardTextStyle}>Цена: {price} руб.</p>
+                </div>
+            </div>
+        );
+    }
+
+
+    class UpcomingBooks extends React.Component {
+
+        constructor(props) {
+            super(props);
+            this.state = {
+                upcomingBooks: [
+                    {
+                        title: "Дневник наикрутейшего воина. Теперь я и правда круче всех! Книга 6",
+                        author: "Кьюб Кид",
+                        price: 2999,
+                        image: "https://cdn.eksmo.ru/v2/ITD000000001153949/COVER/cover1__w820.jpg"
+                    },
+                    {
+                        title: "Женщина, у которой есть план. Правила счастливой жизни",
+                        author: "Мэй Маск",
+                        price: 899,
+                        image: "https://cdn.eksmo.ru/v2/ITD000000001094370/COVER/cover1__w820.jpg"
+                    },
+                    {
+                        title: "Иди туда, где страшно. Именно там ты обретешь силу",
+                        author: "Джим Лоулесс",
+                        price: 799,
+                        image: "https://cdn.eksmo.ru/v2/ITD000000000574646/COVER/cover1__w820.jpg"
+                    },
+                    {
+                        title: "Теория невероятности. Инженерный подход к исполнению желаний",
+                        author: "Татьяна Мужицкая",
+                        price: 1299,
+                        image: "https://cdn.eksmo.ru/v2/ITD000000000914983/COVER/cover1__w820.jpg"
+                    }
+
+
+                ]
+            };
+        }
+
+        render() {
+            return (
+                <div className="container">
+                    <h2 className='text-center'>Скоро в продаже</h2>
+                    <div className="d-flex flex-wrap justify-content-center">
+                        {this.state.upcomingBooks.map((book, index) => (
+                            <UpcomingBook key={index} title={book.title} author={book.author} price={book.price}
+                                          image={book.image}/>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    const Catalog = () => {
+        const catalogData = [
+            {
+                title: "Месси против Роналду. Противостояние 21 века",
+                author: "Джонатан Клегг",
+                price: 999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000001330377/COVER/cover1__w820.jpg",
+            },
+            {
+                title: "Дневник воина в Майнкрафте. От зерна до сражения! Книга 1",
+                author: "Кьюб Кид",
+                price: 1999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000000862058/COVER/cover1__w820.jpg"
+            },
+            {
+                title: "Дневник воина в Майнкрафте. От зерна до сражения! Книга 2",
+                author: "Кьюб Кид",
+                price: 1999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000000898821/COVER/cover1__w820.jpg  "
+            },
+            {
+                title: "Дневник мегавоина. Хиробрин наступает! Книга 3",
+                author: "Кьюб Кид",
+                price: 1999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000000921597/COVER/cover1__w820.jpg"
+            },
+            {
+                title: "Дневник настоящего воина. Я стану капитаном? Книга 4 ",
+                author: "Кьюб Кид",
+                price: 1999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000000932295/COVER/cover1__w820.jpg"
+            },
+            {
+                title: "Дневник самого крутого воина. Книга 5 ",
+                author: "Кьюб Кид",
+                price: 1999,
+                image: "https://cdn.eksmo.ru/v2/ITD000000000964050/COVER/cover1__w820.jpg"
+            }
+        ];
+
+        return (
+            <div className="container">
+                <h2 className='text-center'>Каталог книг</h2>
+                <div className="d-flex flex-wrap justify-content-center">
+                    {catalogData.map((book, index) => (
+                        <Book key={index} title={book.title} author={book.author} price={book.price}
+                              image={book.image} size={300}/>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    function Header() {
+        return (
+            <header>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <a className="navbar-brand" href="#">Книжный магазин</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Главная</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Каталог</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">О нас</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Контакты</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div className="jumbotron text-center">
+                    <h1 className="display-4">Добро пожаловать в наш магазин книг</h1>
+                    <p className="lead">Лучшие книги для вас!</p>
+                </div>
+            </header>
+        );
+    }
+
+    function BookStore() {
+        return (
+            <div>
+                <Header/>
+                <Catalog/>
+                <UpcomingBooks/>
+            </div>
+        );
+    }
+
+    const rootElement = document.getElementById('root');
+    ReactDOM.render(<BookStore/>, rootElement);
+</script>
+</body>
+</html>
