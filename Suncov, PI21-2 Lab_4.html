@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Книжный магазин</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script type="text/babel">
+
+class BookStore extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>
+          <span style={{ marginLeft: "40px" }}>Каталог</span>
+        </h1>
+        <BookList />
+         <div className="text-center">
+          <button className='btn btn-light' style={{width:"200px",  margin: "30px",  borderRadius: '20px', border: '2px solid #343a40',}}>Ещё</button>
+        </div>
+      </div>
+    );
+  }
+}
+
+class BookList extends React.Component {
+   constructor() {
+    super();
+    this.state = {
+      selectedCategory: "all",
+    };
+  }
+
+  handleCategoryChange(category) {
+    this.setState({ selectedCategory: category });
+  }
+  render() {
+    const books = [
+      {
+        title: "Преступление и наказание",
+        author: "Достоевский Федор Михайлович",
+        image: "https://img4.labirint.ru/rc/fae4f2b16840b5576ce11b212ec1b95f/363x561q80/books95/942594/cover.jpg?1688016302",
+        price: 366,
+        oldPrice: 665,
+      },
+      {
+        title: "Морфий",
+        author: "Булгаков Михаил Афанасьевич",
+        image: "https://img3.labirint.ru/rc/08d7b57ee4110d01c9ec8c8d55bb3b7b/363x561q80/books99/983537/cover.jpg?1697005686",
+        price: 343,
+      },
+      {
+        title: "Записки охотника",
+        author: "Тургенев Иван Сергеевич",
+        image: "https://img3.labirint.ru/rc/598874b9139de44d4752abed11cbacb7/363x561q80/books99/982909/cover.jpg?1696433144",
+        price: 196,
+      },
+      {
+        title: "Темные аллеи",
+        author: "Бунин Иван Алексеевич",
+        image: "https://img3.labirint.ru/rc/cc80c7598923237a6e565844fd0cd8e7/363x561q80/books97/963183/cover.jpg?1691825149",
+        price: 248,
+        oldPrice: 451,
+      },
+      {
+        title: "Бесы",
+        author: "Достоевский Федор Михайлович",
+        image: "https://img3.labirint.ru/rc/15ab94d42f089cd647ca8ccc252e221e/363x561q80/books99/982137/cover.jpg?1696501669",
+        price: 1184,
+        oldPrice: 2153,
+      },
+      {
+        title: "Идиот",
+        author: "Достоевский Федор Михайлович",
+        image: "https://img4.labirint.ru/rc/a3e27fd46b52ae60f93154266e3f7db7/363x561q80/books99/980626/cover.jpg?1696325114",
+        price: 1123,
+      },
+      {
+        title: "Унесенные ветром. Том 1",
+        author: "Митчелл Маргарет",
+        image: "https://img4.labirint.ru/rc/c673bb1d199da4cc292bc84d7058c7ee/363x561q80/books98/979408/cover.jpg?1695129990",
+        price: 343,
+      },
+      {
+        title: "Превращение",
+        author: "Кафка Франц",
+        image: "https://img4.labirint.ru/rc/0d7106bb99a6b71c15016194066f5fc0/363x561q80/books98/972396/cover.jpg?1694021196",
+        price: 937,
+      },
+      {
+        title: "Черный монах",
+        author: "Чехов Антон Павлович",
+        image: "https://img3.labirint.ru/rc/62c47076d671ef2118c32cfb824fb9f1/363x561q80/books97/967497/cover.jpg?1691828711",
+        price: 621,
+        oldPrice: 730,
+      }
+    ];
+
+   const categories = ["Все", "Детская литература", "Романы", "Поэзия", "Учебная литература", "Религия", "Ещё"];
+
+    return (
+      <div className="container mt-4">
+        <div className="d-flex">
+          <button
+            className={`nav-link btn btn-light ${this.state.selectedCategory === "all" ? "active" : ""}`}
+            onClick={() => this.handleCategoryChange("all")}>
+            Отечественная литература
+          </button>
+
+          <button
+            className={`nav-link btn btn-light ${this.state.selectedCategory === "foreign" ? "active" : ""}`}
+            onClick={() => this.handleCategoryChange("foreign")}
+          >
+            Зарубежная литература
+          </button>
+        </div>
+        <ul className="nav nav-tabs">
+          {categories.map((category, index) => (
+            <li className="nav-item" key={index}>
+              <a
+                className={`nav-link ${this.state.selectedCategory === category.toLowerCase() ? "active" : ""}`}
+                onClick={() => this.handleCategoryChange(category.toLowerCase())}
+              >
+                {category}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div style={{"column-gap": "5rem"}} className="row mt-4">
+          {books.map((book, index) => (
+            <div className="col-3 mb-4" key={index}>
+              <Book
+                title={book.title}
+                author={book.author}
+                image={book.image}
+                price={book.price}
+                oldPrice={book.oldPrice}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+
+class Book extends React.Component {
+  render() {
+    const { title, author, image, price, oldPrice, size = 350 } = this.props;
+    const bookStyle = {
+      width: `${size}px`,
+      height: `${size * 1.5}px`,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      border: '2px solid black',
+
+    };
+    const imageStyle = {
+      width: `100%`,
+      "object-fit": 'contain',
+      height: `${size - 50}px`,
+      padding: "10px",
+    };
+
+    return (
+      <div className="card" style={bookStyle}>
+        <img src={image} className="card-img-top" alt={title} style={imageStyle} />
+        <div className="card-body d-flex flex-column align-items-center" style={{justifyContent: "space-between",}}>
+          <h5 style={{ textDecoration: 'underline' }} className="card-title">{title}</h5>
+          <p  className="card-text">Автор: {author}</p>
+          <div className="d-flex justify-content-between align-items-center">
+  <span className="card-text" style={{ display: "inline-block", marginRight: "10px", fontWeight: 'bold' }}>Цена: {price}₽   </span>
+  {oldPrice ? (
+    <span className="card-text" style={{ display: "inline-block", textDecoration: "line-through", color: "red", fontWeight: 'bold'}}>
+      {oldPrice}₽
+    </span>
+  ) : null}
+</div>          
+<div className="d-flex justify-content-between align-items-center">
+            <button style={{ textDecoration: 'underline' }} className="btn btn-dark">Добавить в корзину</button>
+           
+<button style={{
+  background: 'none',
+  border: 'none',
+  fontSize: '19px',
+  padding: '10px',
+  cursor: 'pointer',
+}}
+  onMouseEnter={(e) => e.target.querySelector('span').textContent = '🖤'} // Изменение текста при наведении
+  onMouseLeave={(e) => e.target.querySelector('span').textContent = '❤️'} // Возврат к начальному тексту при уходе с элемента
+>
+  <span role="img" aria-label="Добавить в избранное">❤️</span>
+</button>
+
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+
+function Header() {
+  const navStyle = {
+    marginLeft: "50px", // Сдвигаем навигацию влево
+  };
+
+  const linkStyle = {
+    color: "black", // Цвет текста навигации
+    margin: "0 20px", // Отступы между элементами навигации
+    textDecoration: "none",
+    fontSize: "18px", // Размер шрифта
+  };
+
+  const brandStyle = {
+    color: "#343a40", // Цвет "Книжный магазин"
+    fontWeight: "bold", // Сделать жирным
+    fontSize: "24px", // Увеличить размер шрифта
+    marginRight: "20px", // Отступ справа
+  };
+
+  const accountIconStyle = {
+    color: "#343a40", // Цвет значка
+    fontSize: "28px", // Размер значка
+  };
+
+  return (
+    <header>
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <a className="navbar-brand" href="#" style={brandStyle}>
+          Книжный магазин
+        </a>
+        <div className="collapse navbar-collapse" id="navbarNav" style={navStyle}>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a href="#" style={linkStyle}>
+                Главная
+              </a>
+            </li>
+             <li className="nav-item">
+             <a href="#" style={linkStyle}>
+                Каталог
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#" style={linkStyle}>
+                О нас
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#" style={linkStyle}>
+                Контакты
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="#" style={linkStyle}>
+                Блог
+              </a>
+            </li>
+          </ul>
+          <div style={accountIconStyle}>
+            <a href="#">
+              <i className="fas fa-user"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
+
+
+
+function Footer() {
+  return (
+    <footer className="text-center mt-4">
+      <p>&copy; {new Date().getFullYear()} Книжный магазин, Сунцов Андрей</p>
+    </footer>
+  );
+}
+
+
+const SpecialOffer = () => {
+  return (
+    <div className="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+      <div>Специальное предложение: Получите скидку 20% на покупку от 1 500₽ до конца месяца при подписке на новостную рассылку!</div>
+      <div className="d-flex">
+        <input type="email" placeholder="Введите ваш email" className="form-control mr-2" />
+        <button className="btn btn-dark">Подписаться</button>
+      </div>
+    </div>
+  );
+};
+
+
+const Advertisement = () => {
+  const bookInfo1 = {
+    title: "Отель с привидениями",
+    author: "Коллинз Уильям Уилки",
+    image: "https://img3.labirint.ru/rc/aae9734e048ed103e74ad09a5e2918ba/363x561q80/books98/970607/cover.jpg?1692120311",
+    price: 263,
+    oldPrice: 479,
+  };
+
+  const bookInfo2 = {
+    title: "Письмо незнакомки",
+    author: "Цвейг Стефан",
+    image: "https://img4.labirint.ru/rc/2a18821f55f8d2d5e4f9a5d46209700b/363x561q80/books98/970608/cover.jpg?1692120312",
+    price: 295,
+    oldPrice: 537,
+  };
+
+  const bookInfo3 = {
+    title: "Скорбь Сатаны",
+    author: "Корелли Мария",
+    image: "https://img3.labirint.ru/rc/4721f59b32c3510523725512f77691fc/363x561q80/books98/970609/cover.jpg?1692120313",
+    price: 343,
+    oldPrice: 624,
+  };
+
+  const imageStyle = {
+    width: "250px", // Укажите размер, который вам подходит
+    height: "250px", // Укажите размер, который вам подходит
+  };
+
+  return (
+    <div className="jumbotron d-flex align-items-center">
+      <div style={{ flex: 1 }}>
+        <h1>Распродажа Эксмо-Пресс</h1>
+        <h3>Серия «Магистраль. Главный тренд»</h3>
+        <h5>Классика, воплощенная на больших и малых экранах. Шедевры мировой литературы, получившие вторую жизнь во всемирно известных экранизациях. Лучшие тексты, которые непременно стоит читать, чтобы сравнить с их киноверсией и составить собственное мнение, поспорить или согласиться с режиссером.
+<br/>
+<br/>
+В серии уже вышли романы «451° по Фаренгейту» Рэя Брэдбери, «Таинственная история Билли Миллигана» Дэниела Киза, «Над кукушкиным гнездом» Кена Кизи, «Коллекционер» Джона Фаулза, «Мастер и Маргарита» Михаила Булгакова, «Книжный вор» Маркуса Зусака, «Рассказ служанки» Маргарет Этвуд и другие произведения. Серия регулярно обновляется.
+<br/>
+<br/>
+Визитная карточка коллекции — компактный формат, стильные обложки и приятная цена.</h5>
+      </div>
+      <div style={{ flex: 2 }}>
+        <div className="d-flex">
+          <div className="col-4">
+            <Book
+              title={bookInfo1.title}
+              author={bookInfo1.author}
+              image={bookInfo1.image}
+              price={bookInfo1.price}
+              oldPrice={bookInfo1.oldPrice}
+              size={400} // Размер книги
+            />
+          </div>
+          <div className="col-4">
+            <Book
+              title={bookInfo2.title}
+              author={bookInfo2.author}
+              image={bookInfo2.image}
+              price={bookInfo2.price}
+              oldPrice={bookInfo2.oldPrice}
+              size={700} // Размер книги
+            />
+          </div>
+          <div className="col-4">
+            <Book
+              title={bookInfo3.title}
+              author={bookInfo3.author}
+              image={bookInfo3.image}
+              price={bookInfo3.price}
+              oldPrice={bookInfo3.oldPrice}
+              size={400} // Размер книги
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <SpecialOffer />
+      <BookStore />
+      <Advertisement />
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+
+
+  </script>
+</html>
