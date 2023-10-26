@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+        .excerpt-card {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header class="p-3 bg-bright text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-left mb-md-0">
+                <li><a href="index.html" class="nav-link px-2 text-secondary">Магазин</a></li>
+                <li><a href="korzinna.html" class="nav-link px-2 text-white">Корзина</a></li>
+                <li><a href="index.html" class="nav-link px-2 text-white">О нас</a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0">
+                <input type="search" class="form-control form-control-red" placeholder="Поиск..." aria-label="Search">
+                <button type="button" class="btn btn-primary" id="searchButton">Поиск</button>
+            </form>
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-bright bg-red">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-center" style="text-align: center">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Книги</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="author.html">Авторы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="otryvok.html">Отрывки</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="root"></div>
+
+<section class="container">
+    <h1>Отрывки из "Война и мир"</h1>
+    <div class="row">
+        <div class="col-md-12 excerpt-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">"Война и мир" – это одно из самых известных произведений Льва Толстого. Вот первый отрывок из этой книги:</p>
+                    <p class="card-text">"Начну с того, что все в нашем мире устроено настолько гармонично, что просто поражаешься этой великой гармонии."</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 excerpt-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Второй отрывок из "Война и мир":</p>
+                    <p class="card-text">"Любовь и война – два важнейших элемента жизни, искренних и неискусственных. В них человек не обманывается."</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 excerpt-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Третий отрывок:</p>
+                    <p class="card-text">"Счастье не в деньгах, а в добрых отношениях между людьми."</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 excerpt-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Четвертый отрывок:</p>
+                    <p class="card-text">"Война – это не способ решения проблем, а их усугубление."</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 excerpt-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Пятый отрывок:</p>
+                    <p class="card-text">"Истина, как и свет, всегда выходит наружу, несмотря на тьму и сокрытия."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

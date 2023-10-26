@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+        .cart-message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<header class="p-3 bg-bright text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-left mb-md-0">
+                <li><a href="index.html" class="nav-link px-2 text-secondary">Магазин</a></li>
+                <li><a href="korzinna.html" class="nav-link px-2 text-white">Корзина</a></li>
+                <li><a href="index.html" class="nav-link px-2 text-white">О нас</a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0">
+                <input type="search" class="form-control form-control-red" placeholder="Поиск..." aria-label="Search">
+                <button type="button" class="btn btn-primary" id="searchButton">Поиск</button>
+            </form>
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-bright bg-red">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-center" style="text-align: center">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Книги</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="author.html">Авторы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="otryvok.html">Отрывки</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="root"></div>
+
+<section class="container">
+    <h1>Корзина</h1>
+    <div class="row">
+        <div class="col-md-12 cart-message">
+            <p>Корзина пуста</p>
+        </div>
+    </div>
+</section>
+</body>
+</html>
