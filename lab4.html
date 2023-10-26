@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Книжный магазин</title>
+    <style>
+
+        .card-img-top {
+            width: 250px;
+            max-width: 300px;
+            height: 300px;
+            max-height: 400px;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .new-product-card {
+            width: 250px;
+            height: 500px;
+        }
+
+        .new-card-img-top {
+            max-width: 70%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .navbar-custom {
+            background-color: #000000;
+        }
+
+        .navbar a {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+<div id="navigation"></div>
+<div id="books"></div>
+<div id="news"></div>
+</body>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
+
+
+</script>
+<script type="text/babel" data-type="module">
+    import React, {StrictMode} from 'react';
+    import ReactDOM from 'react-dom/client';
+function Card2({children}){
+    return (<div className="row">{children}</div>);
+}
+    function NavigationBar() {
+        return (
+            <nav className="navbar navbar-expand-lg navbar-custom ">
+                <div className="container-fluid">
+
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Главная</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Каталог</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Авторы</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Контакты</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">О Компании</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Акции</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="d-flex align-items-center">
+                        <a className="text-reset me-3" href="#">
+                            <i className="fas fa-shopping-cart"></i>
+                        </a>
+
+
+                    </div>
+                </div>
+            </nav>
+        );
+    }
+
+    function Card(MyBook) {
+        return (
+            <div className="col-md-4 product-card ">
+                <div></div>
+                <div className="card mb-4 bg-transparent">
+                    <img src={MyBook.image} className="card-img-top" alt={MyBook.title}/>
+                    <div className="card-body">
+                        <h5 className="card-title">{MyBook.title}</h5>
+                        <p className="card-text">{MyBook.description}</p>
+                        <div className="text-center">
+                            <button className="btn btn-outline-success">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function NewCard(MyBook) {
+        return (
+            <div className="col-md-4 new-product-card ">
+                <div></div>
+                <div className="new-card mb-4 bg-transparent">
+                    <img src={MyBook.image} className="new-card-img-top" alt={MyBook.title}/>
+                    <div className="card-body">
+                        <h5 className="card-title">{MyBook.title}</h5>
+                        <p className="card-text">{MyBook.description}</p>
+                        <div className="text-center">
+                            <button className="btn btn-outline-success">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function CardInsideTitle({children}) {
+
+        return (
+            <div class="my-4 text-center">{children}</div>
+        );
+    }
+
+    function Title({info}) {
+        return (
+            <CardInsideTitle>
+                <h1 class="display-5 fw-bold">{info.titleMain}</h1>
+            </CardInsideTitle>
+        );
+    }
+
+
+    const myBooks = [
+        {
+            title: 'Иди туда, где страшно. Именно там ты обретешь силу',
+            description: ' «Даже не думай!», «Ещё не время!», «Ничего не выйдет!», «Ты не потянешь!»….',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/99f/80/99f4158f74eb2e6a90dfdae72c87d288.webp'
+        },
+        {
+            title: 'Ребенок в тебе должен обрести дом. Вернуться в детство, чтобы исправить взрослые ошибки',
+            description: 'Каждый из нас хочет быть любимым, нуждается в понимании и уважении.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/f1b/80/f1b201c713b3d28caa1c9c5515463718.webp'
+        },
+        {
+            title: 'Тело помнит все',
+            description: 'Психологическая травма нарушает нашу способность доверять внутренним чувствам',
+            image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/46/25546/1.00x-thumb.png'
+        },
+        {
+            title: 'Женщина, у которой есть план.',
+            description: 'Мои 20 были ужасны. Муж унижал и бил меня.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/ec9/80/ec9ac048792e61ad2daa9c3bcab35433.webp'
+        },
+        {
+            title: 'Это началось не с тебя.',
+            description: 'Душевная или физическая боль не возникает сама по себе и не всегда излечивается со временем.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/308/80/3086d812b6dea0d12e543664eb821e25.webp'
+        },
+        {
+            title: 'К себе нежно.',
+            description: 'К себе нежно» — это новый, очень честный взгляд на любовь к себе',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/65e/80/65e8096d2cfbf2fd0fcde6617597c85b.webp'
+        }
+    ];
+
+    const myNewBooks = [
+        {
+            title: 'Иди туда, где страшно. Именно там ты обретешь силу',
+            description: ' «Даже не думай!», «Ещё не время!», «Ничего не выйдет!», «Ты не потянешь!»….',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/99f/80/99f4158f74eb2e6a90dfdae72c87d288.webp'
+        },
+        {
+            title: 'Ребенок в тебе должен обрести дом. Вернуться в детство, чтобы исправить взрослые ошибки',
+            description: 'Каждый из нас хочет быть любимым, нуждается в понимании и уважении.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/f1b/80/f1b201c713b3d28caa1c9c5515463718.webp'
+        },
+        {
+            title: 'Тело помнит все',
+            description: 'Психологическая травма нарушает нашу способность доверять внутренним чувствам',
+            image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/46/25546/1.00x-thumb.png'
+        },
+        {
+            title: 'Женщина, у которой есть план.',
+            description: 'Мои 20 были ужасны. Муж унижал и бил меня.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/ec9/80/ec9ac048792e61ad2daa9c3bcab35433.webp'
+        },
+        {
+            title: 'Это началось не с тебя.',
+            description: 'Душевная или физическая боль не возникает сама по себе и не всегда излечивается со временем.',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/308/80/3086d812b6dea0d12e543664eb821e25.webp'
+        },
+        {
+            title: 'К себе нежно.',
+            description: 'К себе нежно» — это новый, очень честный взгляд на любовь к себе',
+            image: 'https://bombora.ru/upload/adwex.minified/webp/65e/80/65e8096d2cfbf2fd0fcde6617597c85b.webp'
+        }
+    ];
+
+    function Navbar() {
+        const navigation = ReactDOM.createRoot(document.getElementById('navigation'));
+        navigation.render(
+            <NavigationBar/>
+        );
+    }
+
+    function Books() {
+        const books = ReactDOM.createRoot(document.getElementById('books'));
+        books.render(
+            <>
+                <Title
+                    info={{
+                        titleMain: 'Книжная лавка',
+                    }}
+                />
+                <Card2>
+                    {myBooks.map((product, index) => (
+                        <Card
+                            key={index}
+                            title={product.title}
+                            description={product.description}
+                            price={product.price}
+                            image={product.image}
+                        />
+                    ))}
+                </Card2>
+            </div>,
+            document.getElementById("app")
+        );
+    }
+
+    function News() {
+        const books = ReactDOM.createRoot(document.getElementById('news'));
+        books.render(
+            <div>
+                <Title
+                    info={{
+                        titleMain: 'Новинки',
+                    }}
+                />
+                <div className="row">
+                    {myNewBooks.map((product, index) => (
+                        <NewCard
+                            key={index}
+                            title={product.title}
+                            description={product.description}
+                            price={product.price}
+                            image={product.image}
+                        />
+                    ))}
+                </div>
+            </div>,
+            document.getElementById("app")
+        );
+    }
+
+    <Navbar />
+    <Books />
+    <News/>
+
+</script>
+</html>
