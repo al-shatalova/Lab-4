@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- This setup is not suitable for production. -->
+  <!-- Only use it in development! -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script
+    async
+    src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"
+  ></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+  </script>
+  <script type="text/babel" data-type="module">
+    import React, { StrictMode } from "react";
+    import { createRoot } from "react-dom/client";
+
+    function TopNavBar() {
+      return (
+        <nav className="navbar navbar-dark bg-dark justify-content-between">
+          <a className="navbar-brand" style={{ color: "white" }}>
+            Лабиринт
+          </a>
+          <form className="form-inline">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Что хотите почитать?"
+              aria-label="Search"
+            />
+            <button className="btn btn-light my-2 my-sm-0" type="submit">
+              Поиск
+            </button>
+          </form>
+        </nav>
+      );
+    }
+
+    function MainNavBar() {
+      return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Книги
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Статьи
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Обзоры книг
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Отрывки из книг
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Тесты
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Интервью
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Чек-листы
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      );
+    }
+
+    function Card({ children }) {
+      const cardStyle = {
+        display: "flex",
+        flexWrap: "wrap",
+      };
+      return (
+        <div className="container" style={cardStyle}>
+          {children}
+        </div>
+      );
+    }
+
+    function Avatar({ book, size = 150 }) {
+      const avatarContainerStyle = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        margin: "20px",
+      };
+
+      const imageStyle = {
+        maxWidth: "90%",
+      };
+      return (
+        <div className="a" style={avatarContainerStyle}>
+          <img
+            className="avatar"
+            src={book.imageId}
+            alt={book.name}
+            width={size}
+            height={size + 60}
+            style={imageStyle}
+          />
+          <p>{book.price}</p>
+          <p>{book.author}</p>
+          <p>{book.name}</p>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit">
+            Купить
+          </button>
+        </div>
+      );
+    }
+
+    function Avatar2({ book, size = 300 }) {
+      const avatarContainerStyle = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        margin: "20px",
+      };
+
+      const imageStyle = {
+        maxWidth: "100%",
+      };
+      return (
+        <div className="a" style={avatarContainerStyle}>
+          <img
+            className="avatar"
+            src={book.imageId}
+            alt={book.name}
+            width={size}
+            height={size}
+            style={imageStyle}
+          />
+          <p>{book.price}</p>
+          <p>{book.author}</p>
+          <p>{book.name}</p>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit">
+            Получить
+          </button>
+        </div>
+      );
+    }
+
+    export default function Profile() {
+      return (
+        <body>
+          <TopNavBar />
+          <MainNavBar />
+          <h1>Монстры, тыквы, Хэллоуин!</h1>
+          <Card>
+            <Avatar
+              book={{
+                author: "Эдгар Аллан По",
+                imageId:
+                  "https://img4.labirint.ru/rc/b69bcf023d2f6fd8c98d146c50cb2ce1/363x561q80/books82/818944/cover.jpg?1631298310",
+                name: "Мистические рассказы",
+                price: "2297 ₽",
+              }}
+            />
+            <Avatar
+              book={{
+                author: "Брэм Стокер",
+                imageId:
+                  "https://img3.labirint.ru/rc/d1d8b2e2af16b6a55e7da5e238f6e0d2/363x561q80/books94/939073/cover.jpg?1695572733",
+                name: "Дракула",
+                price: "3829 ₽",
+              }}
+            />
+            <Avatar
+              book={{
+                author: "Оскар Уайльд",
+                imageId:
+                  "https://img3.labirint.ru/rc/7850fbd28db2e3aa8b2481f3832df080/363x561q80/books99/984801/cover.jpg?1697556347",
+                name: "Кентервильское привидение",
+                price: "459 ₽",
+              }}
+            />
+            <Avatar
+              book={{
+                author: "Михаил Булгаков",
+                imageId:
+                  "https://img4.labirint.ru/rc/1a7e8e1c06f474556bc86a43414e858f/363x561q80/books76/753266/cover.jpg?1684517123",
+                name: "Мастер и Маргарита",
+                price: "1686 ₽",
+              }}
+            />
+            <Avatar
+              book={{
+                author: "Мэри Шелли",
+                imageId:
+                  "https://img4.labirint.ru/rc/74f57d9ed00f844edc16c1b7b68006a2/363x561q80/books82/819482/cover.jpg?1629901503",
+                name: "Франкенштейн",
+                price: "492 ₽",
+              }}
+            />
+          </Card>
+          <h1>Интересные акции сегодня</h1>
+          <Card>
+            <Avatar2
+              book={{
+                name: "Spooky books. Скидка 45%",
+                imageId:
+                  "https://labirint.ru/images/actions/action_app_1698160225_2082.png",
+              }}
+            />
+            <Avatar2
+              book={{
+                name: "Купон на иностранные книги Favorite",
+                imageId:
+                  "https://labirint.ru/images/actions/action_app_1698063997_4787.png",
+              }}
+            />
+            <Avatar2
+              book={{
+                name: "Скидки на учебники и пособия до 30%",
+                imageId:
+                  "https://img.labirint.ru/images/design/b/banner_651f09db8eaa8.png",
+              }}
+            />
+          </Card>
+        </body>
+      );
+    }
+
+    const root = createRoot(document.getElementById("root"));
+    root.render(
+      <StrictMode>
+        <Profile />
+      </StrictMode>
+    );
+  </script>
+</html>
