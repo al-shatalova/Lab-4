@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный магазин</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky;">
+        <div class="container">
+            <a class="navbar-brand" href="#">БОМБОРА</a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Книги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Статьи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Обзоры книг</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Отрывки из книг</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Тесты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Интервью</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Чек-листы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Бинго</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Авторы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Блогеры</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Что хотите почитать?"
+                        aria-label="Поиск">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Card({ children }) {
+            return (
+                <div className="card">
+                    {children}
+                </div>
+            );
+        }
+
+        function Avatar(props) {
+            return (
+                <img
+                    src={props.src}
+                    alt={props.alt}
+                    style={{ maxWidth: '100%', height: 'auto', width: props.size }}
+                    className="card-img-top"
+                />
+            );
+        }
+
+        function Book(props) {
+            const { title, description, avatarSrc } = props;
+
+            return (
+                <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                    <Card>
+                        <Avatar src={avatarSrc} alt={title} />
+                        <div className="card-body">
+                            <h5 style={{ cursor: 'pointer' }} className="card-title">{title}</h5>
+                            <p className="card-text">{description}</p>
+                            <button className="btn btn-outline-primary">Подробнее</button>
+                        </div>
+                    </Card>
+                </div>
+            );
+        }
+
+        function BookList() {
+            const booksRow1 = [
+                {
+                    id: 1,
+                    title: 'ОТКРЫВАЯ РОССИЮ',
+                    description: 'Самые красивые места нашей страны глазами фотографов-путешественников Russian Explorers',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/914/1wpdqo96xgxdwosfb3ph2emqg14aae9k/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 2,
+                    title: 'ПСИХОСОМАТИКА',
+                    description: 'Психосоматика. Как распознать и обезвредить хронический стресс',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/1e9/94v3gwntgp8hv9vnv6b6qczeg69kcgcl/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 3,
+                    title: 'РЕБЕНОК В ТЕБЕ ДОЛЖЕН ОБРЕСТИ ДОМ',
+                    description: 'Ребенок в тебе должен обрести дом. Вернуться в детство, чтобы исправить взрослые ошибки',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/f79/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 4,
+                    title: 'ЭТО НАЧАЛОСЬ НЕ С ТЕБЯ',
+                    description: 'Это началось не с тебя. Как мы наследуем негативные сценарии нашей семьи и как остановить их влияние',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/746/300_408_1/cover3d.jpg'
+                }
+            ];
+
+            const booksRow2 = [
+                {
+                    id: 5,
+                    title: 'ТЕЛО ПОМНИТ ВСЕ',
+                    description: 'Тело помнит все: какую роль психологическая травма играет в жизни человека и какие техники помогают ее преодолеть',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/61b/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 6,
+                    title: 'Что-то не так с Гэлвинами',
+                    description: 'Что-то не так с Гэлвинами. Идеальная семья, разрушенная безумием',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/4b5/09uy50y55uekrew57r93fksrdvdlex4l/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 7,
+                    title: 'WILL',
+                    description: 'Will. Чему может научить нас простой парень, ставший самым высокооплачиваемым актером Голливуда',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/862/lfrbk2z05kfbdpkt4p1fdwrl6jadfg92/300_408_1/cover3d.jpg'
+                },
+                {
+                    id: 8,
+                    title: 'НЕРЕАЛЬНАЯ ЛЮБОВЬ',
+                    description: 'Нереальная любовь. Как найти своего человека и построить крепкие отношения',
+                    avatarSrc: 'https://bombora.ru/upload/resize_cache/iblock/eeb/mgc2zbndfcvbhh09e1s9ux06vmlkuppm/300_408_1/cover3d.jpg'
+                }
+            ];
+
+            const booksRow3 = [
+                {
+                    id: 9,
+                    title: '',
+                    description: 'Последняя теория Стивена Хокинга, рецепты для настоящих отаку и новое «Кафе на краю земли»',
+                    avatarSrc: 'https://bombora.ru/upload/iblock/5d1/sqsc5nbr7k6haj2ewvhycpjw9u3qzvf2/anons-novinki-okyatyabrya-kopiya.png'
+
+                },
+                {
+                    id: 10,
+                    title: 'Самые опасные вершины мира',
+                    description: 'Пройди тест и узнай, какая гора не любит женщин и на какой 8-тысячник первыми в мире поднялись россияне',
+                    avatarSrc: 'https://bombora.ru/upload/iblock/62a/htvyihrqzmg6sktyw0abbbkhy1efrl7z/anons_test-gory-kopiya.png'
+                },
+                {
+                    id: 11,
+                    title: 'Коктейль молодости, напечатанные органы и другие прелести науки',
+                    description: 'Интервью с автором книги «Как подружить гены в клетках» Ангелиной Moleccula Потаповой',
+                    avatarSrc: 'https://bombora.ru/upload/iblock/b40/1n83v6szbuxkjtlgcwnwulub0r8i2fxq/640kh420_intervyu_potapova-kopiya.png'
+                },
+                {
+                    id: 12,
+                    title: 'Маньяк с пляжа Гилго',
+                    description: 'Его искали 13 лет, о расследовании сняли фильм и написали книгу',
+                    avatarSrc: 'https://bombora.ru/upload/iblock/3d4/5gv6dtcsbmmql0h4zv3at80qxp65wkl0/640kh420_ischeznuvshie-devushki-kopiya.png'
+                }
+            ];
+
+            return (
+                <div className="container mt-3">
+                    <h2 class="header">Новинки</h2>
+                    <div className="row">
+                        {booksRow1.map((book) => (
+                            <Book key={book.id} {...book} size='100%' />
+                        ))}
+                    </div>
+                    <h2 class="header">Бестселлеры</h2>
+                    <div className="row">
+                        {booksRow2.map((book) => (
+                            <Book key={book.id} {...book} size='100%' />
+                        ))}
+                    </div>
+                    <div className="row mx-auto justify-content-around">
+                        <h2 class="header">Блог</h2>
+                        {booksRow3.map((book) => (
+                            <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-4" key={book.id}>
+                                <Card>
+                                    <Avatar src={book.avatarSrc} alt={book.title} size='200px' />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{book.title}</h5>
+                                        <p className="card-text">{book.description}</p>
+                                        <button className="btn btn-outline-secondary">Читать</button>
+                                    </div>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<BookList />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
