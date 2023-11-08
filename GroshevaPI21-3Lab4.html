@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бомбора</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        h2 {
+            margin: 20px;
+            font-size: 36px;
+            color: #333;
+        }
+        .card {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .card-title {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="">
+        <img src="https://bombora.ru/local/templates/bombora_template_v2/img/new-logo.svg" alt="Логотип"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Книги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Об издательстве</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Афиша</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Блог</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Что хотите почитать?" aria-label="Поиск">
+            </form>
+        </div>
+    </div>
+</nav>
+<div id="root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+
+<script type="text/babel">
+
+    function Card({ children }) {
+        return (
+            <div className="card">
+                {children}
+            </div>
+        );
+    }
+
+    function Avatar(props) {
+        return (
+            <img
+                src={props.src}
+                alt={props.alt}
+                style={{ maxWidth: '80%', 
+                height: 'auto', 
+                width: props.size,
+                display: 'block',
+                margin: '0 auto',
+                }}
+                className="card-img-top"
+            />
+        );
+    }
+
+
+
+    function Book(props) {
+        const { title, description, avatarSrc } = props;
+        return (
+            <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <Card>
+                    <Avatar src={avatarSrc} alt={title} />
+                    <div className="card-body">
+                        <h5 className="card-title">{title}</h5>
+                        <p className="card-text">{description}</p>
+                    </div>
+                </Card>
+            </div>
+        );
+    }
+
+    function BookList() {
+        const booksRow1 = [
+            {
+                id: 1,
+                title: 'Тело помнит все',
+                description: 'Тело помнит все: какую роль психологическая травма играет в жизни человека и какие техники помогают ее преодолеть',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/0c9/80/0c9e1c54338967786adc41949f91584e.webp'
+            },
+            {
+                id: 2,
+                title: 'К себе нежно',
+                description: 'К себе нежно. Книга о том, как ценить и беречь себя',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/2a7/80/2a763058a697da158a1bdc92562a1f2e.webp'
+            },
+            {
+                id: 3,
+                title: 'CHANEL',
+                description: 'CHANEL. История модного дома',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/806/80/80617854983f06e2ff378b29fa32cb6d.webp'
+            },
+            {
+                id: 4,
+                title: 'Психосоматика: тело говорит',
+                description: 'Психосоматика: тело говорит. Как научиться слушать свое тело и подобрать ключ к его исцелению',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/164/80/16416d8018533108911e8b0c755bcd3d.webp'
+            },
+        ];
+
+        const booksRow2 = [
+            {
+                id: 5,
+                title: 'Сила подсознания',
+                description: 'Сила подсознания, или Как изменить жизнь за 4 недели',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/0eb/80/0eb8c4e0c40981f5121b9b35c5e2e6c6.webp'
+
+            },
+            {
+                id: 6,
+                title: 'Это началось не с тебя',
+                description: 'Как мы наследуем негативные сценарии нашей семьи и как остановить их влияние',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/126/80/12648332640191d5a787aa32baacf789.webp'
+            },
+            {
+                id: 7,
+                title: 'Отстаньте от ребенка!',
+                description: 'Отстаньте от ребенка! Простые правила мудрых родителей',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/57f/80/57f1b6e5072732b4f24b6f41d5092245.webp'
+            },
+            {
+                id: 8,
+                title: 'Ревматология',
+                description: 'Ревматология по косточкам. Симптомы, диагнозы, лечение',
+                avatarSrc: 'https://bombora.ru/upload/adwex.minified/webp/2c5/80/2c5f8b3d111330c72bfaf88ed360f3bc.webp'
+            },
+        ];
+
+        return (
+            <div className="container">
+                <h2>Бестселлеры</h2>
+                <div className="row">
+                    {booksRow1.map((book) => (
+                        <Book key={book.id} {...book} size='100%'/>
+                    ))}
+                </div>
+                <h2>Новинки</h2>
+                <div className="row mx-auto justify-content-around">
+                    {booksRow2.map((book) => (
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-6 mb-4" key={book.id}>
+                            <Card>
+                                <Avatar src={book.avatarSrc} alt={book.title} size='200px'/>
+                                <div className="card-body">
+                                    <h5 className="card-title">{book.title}</h5>
+                                    <p className="card-text">{book.description}</p>
+                                </div>
+                            </Card>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<BookList />, document.getElementById('root'));
+</script>
+</body>
+</html>
