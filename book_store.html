@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Книжный магазин</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+  // Компонент Book
+  const booksData = [
+    {
+      id: 1,
+      image: 'https://bombora.ru/upload/adwex.minified/webp/ab7/80/ab7806bb9f8bd81582555e380dcf9eb7.webp',
+      title: 'Счастье по дзен',
+      author: 'Крис Прентисс',
+      description: 'Все, что ни делается, — к лучшему, таков закон счастья по дзен. Эта древняя восточная мудрость кажется наивной, но, приняв ее, вы можете создать личную философию и преодолеть трудные жизненные периоды, усталость и стресс. Измените свою реакцию на события, научитесь видеть хорошее в каждом дне и наполните свою жизнь смыслом, радостью и любовью.',
+      price: 492,
+    },
+    {
+      id: 2,
+      image: 'https://bombora.ru/upload/adwex.minified/webp/bc6/80/bc689fe5d4e3088017bcf5f542f71ad7.webp',
+      title: 'Сила подсознания, или Как изменить жизнь за 4 недели',
+      author: 'Джо Диспенза',
+      description: 'Результаты многочисленных опытов и экспериментов показали удивительную закономерность — клетки мозга не отличают реальные физические переживания от воображаемых — происходящих у нас в мыслях. Эта книга изменит ваше представление о том, как «работает» ваш мозг и вселенная.',
+      price: 726,
+    },
+    {
+      id: 3,
+      image: 'https://bombora.ru/upload/adwex.minified/webp/234/80/2340c2d014e979a8deac003e052ea32c.webp',
+      title: 'Думай и богатей',
+      author: 'Наполеон Хилл',
+      description: 'СУПЕРБЕСТСЕЛЛЕР по саморазвитию и самообогащению уже 80 ЛЕТ!\n' +
+              '\n' +
+              '500 самых богатых и успешных людей Америки более 20 лет участвовали в ее создании.\n' +
+              '\n' +
+              '6-е место в списке бизнес-бестселлеров всех времен журнала Business Week.',
+      price: 726,
+    },
+  ];
+
+  const book_new= [
+    {
+      id: 1,
+      image: 'https://bombora.ru/upload/adwex.minified/webp/a32/80/a327f377c71092fcbad01ddf69a7895d.webp',
+      title: 'Кафе на краю земли',
+      author: 'Джон Стрелеки',
+      description: 'После долгого блуждания в темноте и неизвестности всё, что вам нужно — зайти в уютное кафе, выбрать столик и раскрыть меню. Вместе с главным героем Джоном вы пройдете короткий, но полный удивительных открытий путь — путь к самому себе. Каждому из нас необходимо хоть раз остановиться посреди суеты и тревог современного мира и ответить на главный вопрос: «Почему я здесь?»',
+      price: 248,
+    },
+    {
+      id: 2,
+      image: 'https://bombora.ru/upload/adwex.minified/webp/190/80/19039a407b67e0d289164feba8603680.webp',
+      title: 'Роман с самим собой',
+      author: 'Татьяна Мужицкая',
+      description: 'Когда ты себя любишь, ты точно знаешь, чего хочешь и идешь к этому.\n' +
+              '\n' +
+              'Но как избавиться от негативного шума в голове, принять себя, перестать сомневаться в будущем и излучать в мир счастье и позитив? ',
+      price: 870,
+    }
+  ];
+
+
+  function Book(props) {
+    const book = props.book
+    const imageStyle = {
+      maxWidth: '100%',
+      maxHeight: '150px'
+    };
+
+
+    const btnStyle = {
+      cursor: 'pointer',
+      display: 'inline-flex',
+      align: 'center',
+    }
+
+    return (
+            <div className="book">
+              <img src={book.image} alt={book.title} style={imageStyle} />
+              <h2>{book.title}</h2>
+              <p>{book.author}</p>
+              <p>{book.description}</p>
+              <p>Цена: ₽{book.price}</p>
+              <button className="btn btn-primary" style={btnStyle}>Купить!</button>
+            </div>
+    );
+  }
+
+  function Card({ children }) {
+    return (
+            <div className="container">
+              {children}
+            </div>
+    );
+  }
+
+
+  function Book_new(props) {
+    const book_new = props.book_new
+    const imageStyle = {
+      maxWidth: '100%',
+      maxHeight: '250px'
+    };
+
+    const btnStyle = {
+      cursor: 'pointer',
+      display: 'inline-flex',
+      align: 'center',
+      color: '#279ff3',
+      border: '1px solid #279ff3',
+      transition: 'background-color 0.3s', // Добавляем анимацию смены цвета фона
+    };
+
+// Добавляем стили для состояния :hover
+    btnStyle[':hover'] = {
+      backgroundColor: '#0887df', // Новый цвет фона при наведении
+      color: 'white', // Изменение цвета текста при наведении
+    };
+    return (
+            <div className="book">
+              <img src={book_new.image} alt={book_new.title} style={imageStyle}/>
+              <h2>{book_new.title}</h2>
+              <p>{book_new.author}</p>
+              <p>{book_new.description}</p>
+              <p>Цена: ₽{book_new.price}</p>
+              <button className="btn" style={btnStyle}>Купить!</button>
+            </div>
+    );
+  }
+
+
+  const App = () => (
+          <div className="container">
+            <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#cfe3f1' }}>
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                  <li><a href="#" className="nav-link px-2 link-secondary" style={{ color: '#279ff3', fontSize: '20px' }}>BOMBORA</a></li>
+                  <li><a href="#" className="nav-link px-2 link-dark">Об издательстве</a></li>
+                  <li><a href="#" className="nav-link px-2 link-dark">Афиша</a></li>
+                  <li><a href="#" className="nav-link px-2 link-dark">Блог</a></li>
+                </ul>
+              </div>
+            </nav>
+
+            <header className="p-3 mb-3 border-bottom">
+              <div className="container">
+                <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                  <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                      <use xlinkHref="#bootstrap"></use>
+                    </svg>
+                  </a>
+
+                  <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" className="nav-link px-2 link-secondary">Обзор</a></li>
+                    <li><a href="#" className="nav-link px-2 link-dark">Статьи</a></li>
+                    <li><a href="#" className="nav-link px-2 link-dark">Интервью</a></li>
+                    <li><a href="#" className="nav-link px-2 link-dark">Авторы</a></li>
+                    <li><a href="#" className="nav-link px-2 link-dark">Клиентам</a></li>
+                    <li><a href="#" className="nav-link px-2 link-dark">Заказы</a></li>
+                  </ul>
+
+                  <form className="form-inline my-2 my-lg-0">
+                    <label>
+                      <input className="form-control mr-sm-2" type="search" placeholder="Например: Счастье по Дзен" style={{ width: '250px' }} />
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </header>
+
+            <Card>
+            <div className="row">
+              {booksData.map((book) => (
+                      <div className="col">
+                        <Book book={book} />
+                      </div>
+              ))}
+            </div>
+            </Card>
+            <h1 className="text-center my-4">НОВИНКИ</h1>
+            <Card>
+            <div className="row">
+              {book_new.map((book) => (
+                      <div className="col">
+                        <Book_new book_new={book} />
+                      </div>
+              ))}
+            </div>
+            </Card>
+          </div>
+  );
+
+  // Рендер компонента App в корневой элемент
+  ReactDOM.render(<App />, document.getElementById("root"));
+</script>
+</body>
+</html>
