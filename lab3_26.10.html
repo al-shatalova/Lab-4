@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookstore</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <meta charset="utf-8" />
+  <style>
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      margin: 10px;
+      width: 250px;
+      background-color: #C0C0C0;
+      border: 2px solid black;
+    }
+
+    .btn-primary{
+      background-color:#FF8000;
+      color: white;
+    }
+    .btn-primary2{
+      background-color: #660066;
+      color: white;
+    }
+    .btn-primary, .btn-primary2{
+      margin-bottom: 5px;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script type="text/babel">
+  function NavigationBar({ onSearchChange }) {
+      return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Книжный магазин</a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <form className="form-inline my-2 my-lg-0">
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Поиск"
+                aria-label="Найдём подходящее"
+                onChange={onSearchChange}
+              />
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+                Поиск
+              </button>
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+                Корзина
+              </button>
+            </form>
+          </div>
+        </nav>
+      );
+    }
+
+  function Card({children}){
+    return(
+      <div className="card">{children}</div>
+    );
+  }
+
+  function Book({ title, description, url, price, height, width }) {
+      return (
+      <Card>
+          <img src={url} className="card-img-top" height = {height} width = {width} alt="Book Image" />
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{description}</p>
+            <a href="#" className="btn btn-primary">В корзину</a>
+            <a href="#" className="btn btn-primary2">Купить за {price} руб.</a>
+          </div>
+      </Card>
+      );
+    }
+
+    function Bookstore() {
+      const [searchTerm, setSearchTerm] = React.useState("");
+      const books = [
+        { id: 1, title: "Гарри Поттер и философский камень", description: "Сюжет строится вокруг главного героя, сироты Гарри Поттера, который узнаёт...", url: "https://i.pinimg.com/originals/0d/22/21/0d2221c6fa74dc79ae27bc81b2ebae0e.jpg", price: "1000", height: 300, width: 300 },
+        { id: 2, title: "Гарри Поттер и Тайная комната", description: "Книга рассказывает о втором учебном годе в школе чародейства и волшебства Хогвартс...", url: "https://images.spasibovsem.ru/catalog/original/audiokniga-garri-potter-i-tajnaya-komnata-dzhoan-rouling-otzyvy-1588013935.jpg", price: "1100", height: 300, width: 300 },
+        { id: 3, title: "Гарри Поттер и узник Азкабана", description: "Третья книга Джоан Роулинг из серии романов о Гарри Поттере. В третьей книге...", url: "https://sun9-41.userapi.com/impg/7DOVM4ojRAaUFlweN4vTMYnij3H0boczC0rkJw/fuQvm90RUQo.jpg?size=453x604&quality=96&sign=1bb94b9eb9b0b0a718f390d6d4401c01&c_uniq_tag=Z-0U4sx3qKh3CI-vRAl_UdfQppXGUCHMsqEyXOgQbSs&type=album", price: "1200", height: 300, width: 300 }
+      ];
+      const smallBooks = [
+        { id: 4, title: "Гарри Поттер и Кубок огня", description: "По сюжету Гарри Поттер против своей воли вовлекается в участие в Турнире Трёх Волшебников...", url: "https://i.pinimg.com/originals/ca/ad/e1/caade181726ff21a360dab4fd379d939.jpg", price: "1300", height: 150, width: 150 },
+        { id: 5, title: "Гарри Поттер и Орден Феникса", description: "Пятая часть в серии книг о Гарри Поттере. Сюжет произведения заключается в борьбе антагониста Лорда Волан-де-Морта...", url: "https://static.alipson.fr/m215/p439215/p1_FULL.jpg", price: "1400", height: 150, width: 150 },
+        { id: 6, title: "Гарри Поттер и Принц-полукровка", description: "В книге описывается шестой год обучения героев в Хогвартсе, неожиданные успехи Гарри после того, как ...", url: "http://www.strippedbooks.com/images/stripped/stripped6/Potter-00.jpg", price: "1500", height: 150, width: 150 },
+      ];
+
+      const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+      };
+
+      const filteredBooks = books.filter((book) =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      const filteredSmallBooks = smallBooks.filter((book) =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+
+      const morebooks = filteredBooks.map((book) => (
+              <Book key={book.id} {...book} />
+            ))
+
+      const moresmallBooks = filteredBooks.map((book) => (
+              <Book key={book.id} {...book} />
+            ))
+
+      return (
+        <div>
+        <NavigationBar onSearchChange={handleSearchChange} />
+          <div className="book-container">
+          {morebooks}
+          </div>
+          <div className="book-container">
+          {moresmallBooks}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<Bookstore />, document.getElementById("root"));
+  </script>
+  <!-- Include React and ReactDOM libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+</body>
+</html>
