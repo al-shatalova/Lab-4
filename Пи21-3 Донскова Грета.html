@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+
+
+    <style>
+        .navbar1 {
+  background-color: rgba(45, 20, 51, 0.8) !important;
+  font-size: 16px;
+}
+
+.navbar2 {
+  background-color: rgba(45, 20, 51, 0.4) !important; 
+  font-size: 20px;
+}
+
+.navbar2 .navbar-collapse {
+  display: flex;
+  justify-content: center;
+}
+
+.btn.btn-outline-success {
+  color: #380516;
+  border-color: #380516; 
+}
+
+.btn.btn-outline-success:hover {
+  background-color: #380516; 
+  color: white; 
+  border-color: #380516; 
+}
+
+
+h1{
+        padding-left: 20%;
+        color: #270c30;
+    }
+
+
+    .avatar-row {
+        display: flex;
+        margin-bottom: 5%;
+        justify-content: space-around;
+    }
+
+    .avatar-container {
+        margin-right: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #dfdcf5;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f3ddf6;
+    }
+
+    .avatar-name, .avatar-author {
+  margin: 0; 
+  color: #270c30; 
+}
+
+.avatar-name {
+  font-weight: bold;
+}
+
+.avatar-container {
+    margin-left: 2%;
+    margin-right: 2%;
+  max-width: 20%; 
+  
+}
+
+
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar1">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #484548">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" style="font-weight: bold;">美丽与自由</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Выбор читателей</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Выбери свой жанр
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Детективы</a>
+                    <a class="dropdown-item" href="#">Романы</a>
+                    <a class="dropdown-item" href="#">Для детей</a>
+                    <a class="dropdown-item" href="#">Психология</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" style="display: flex; align-items: center; margin-left: 47%">
+            <input class="form-control mr-sm-2" type="search" placeholder="Найди свою книгу" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: 10px;">
+                Поиск
+            </button>
+        </form>
+        
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar2">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Новинки</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Топ-10</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+<div id="app"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js" data-presets="react,es2015,stage-2"
+        data-plugins="transform-modules-umd"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    function Avatar({ book, width=270, height=400}) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={book.imageId}
+                    alt={book.name}
+                    nameBook={book.author}
+                    width={width}
+                    height={height}
+                />
+                <p className="avatar-name">{book.name}</p>
+                <p className="avatar-author">{book.author}</p>
+            </div>
+        );
+    }
+    function Avatar2({ book, size=200 }) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={book.imageId}
+                    alt={book.name}
+                    width={size}
+                    height={size+100}
+                />
+                <p className="avatar-name">{book.name}</p>
+            </div>
+        );
+    }
+    function Card({children}){
+        return (
+            <div className="avatar-row">
+                {children}
+            </div>
+        )
+    }
+    function App() {
+        return (
+            <div>
+                <h1>Топ-10: Что почитать, чтобы быть в балансе?</h1>
+                <Card>
+                    <Avatar
+                        book ={{
+                            name: 'Внутренняя опора',
+                            author: 'Анна Бабич',
+                            imageId:
+                                'https://cdn.respublica.ru/uploads/01/00/00/hd/nv/0d368c98374754c8.jpg?1668209849'
+                        }}
+                    />
+                    <Avatar
+                    book={{
+                            name: 'К себе нежно',
+                            author: 'Ольга Примаченко',
+                            imageId:
+                                'https://lenta.servicecdn.ru/globalassets/1/-/66/74/05/453934.png?preset=fulllossywhite'
+                        }}
+                    />
+                    <Avatar
+                    book={{
+                            name: 'Выбор',
+                            author: 'Эдит Ева Эгер',
+                            imageId:
+                                'https://img3.labirint.ru/rc/b4643f9ad010dee3f2bdb084188e65f8/363x561q80/books76/754571/cover.jpg?1652279102'
+                        }}
+                    />
+                </Card>
+                <h1>Выбор читателей</h1>
+                <div className="avatar-row">
+                    <Avatar2
+                        book={{
+                            name: 'Открывая Россию',
+                            author: '',
+                            text: '«Открывая Россию» — это уникальный фотоальбом, где собраны самые красивые природные места нашей страны от дюн Калининграда до вулканов Камчатки. Команда travel-фотографов Russian Explorers более 5 лет собирала материал, чтобы вы смогли взять в руки эту книгу. Полюс холода Оймякон, ледяные пещеры Байкала, яркие Курильские острова, таинственная Долина гейзеров, северное сияние в Мурманской области, колоритные села Дагестана и невероятные горы Кавказа — природа России удивит любого самого искушенного путешественника.',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/a93/80/a93b146e5d1885f10516284210da51d0.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Женщина, у которой есть план. Правила счастливой жизни',
+                            text: '«Мои 20 были ужасны. Муж унижал и бил меня. Мои 30 были не проще — я развелась и осталась одна с тремя детьми. В 40 лет я переехала на другой континент и начала жизнь с чистого листа. В 50 пыталась открыть свой бизнес в Нью-Йорке. В 60 жизнь более или менее пришла в равновесие: дети, внуки, работа. А теперь, в 70, я востребована и счастлива как никогда». Неповторимая Мэй Маск, супермодель и мать гениального Илона Маска, делится Правилами, которые помогли ей стать успешной и дать детям великолепный старт. • После вечеринки запомнят не саму красивую, а ту, с которой было весело. • Хотите сохранить фигуру? Пусть гости заберут все конфеты с собой! • Магия 12 лет — возраст, когда нужно открывать таланты детей. • Ваше питание не обязано быть безупречным. И вы тоже! • Делайте добрые дела — и вы получите друзей на всю жизнь. • Переживайте из-за мужчины не больше трех дней. • Превратите в привычку всегда озвучивать свои желания вслух. ',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/ec9/80/ec9ac048792e61ad2daa9c3bcab35433.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Нереальная любовь. Как найти своего человека и построить крепкие отношения',
+                            text: 'Ирина Семизорова — клинический психолог, психотерапевт, системный терапевт (расстановщик), гештальт-консультант, EMDR-терапевт, провокативный терапевт, коуч, бизнес-тренер. «Нереальная любовь» — результат ее многочисленных исследований на тему отношений. За 15 лет работы системным и провокативным психотерапевтом она провела тысячи сессий с парами, супругами и точно знает, как избавить вас от страха и блокирующих убеждений, которые мешают обрести счастье и подходящего партнера. Благодаря этой книге вы поймете, что не узнать любовь невозможно, кроме этого, она поможет вам: — справиться с обидами на родителей и перестать бояться повторяющихся сценариев; - понять, как страх материнства влияет на отношения; - изучить женские и мужские архетипы, чтобы лучше понимать себя и партнера; - настроиться на изменения, используя авторские техники и аффирмации; - не растворяться в отношениях, но впустить в свою жизнь любовь.',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/2a6/80/2a6b23fe6329c337ecf1fb9de1636b3d.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Тайная жизнь пчел',
+                            text: 'Пронзительная и светлая история о семейных секретах, поиске себя, женской силе, любви и умении прощать. Лили Оуэнс сидит в придорожной палатке и продает персики, которые выращивает ее отец. Жарко. На дороге совсем нет машин, Лили умирает от скуки, но знает, что читать нельзя ─ отец отнимает у нее книги. Мама Лили погибла у нее на глазах десять лет назад: очередная семейная ссора, пистолет и случайный выстрел… Лили помнит, что мама собиралась уехать навсегда и взять ее с собой. Отец жесток с ней: за каждую провинность следуют тяжелые наказания. Единственная родная душа ─ ее темнокожая няня Розалин. 2 июля 1964 года Лили исполнилось 14 лет, в этот день она узнает страшную тайну о матери, а Розалин оказывается в смертельной опасности. Для Лили и Розалин единственный выход ─ бежать. Бежать, чтобы отыскать следы матери Лили, разобраться в себе и в прошлом своей семьи.',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/504/80/5046f384a2d3f672e0130bb7def257e0.webp'
+                        }}
+                    />
+                </div>
+                    <div className="avatar-row">
+                    <Avatar2
+                        book={{
+                            name: 'Иди туда, где страшно',
+                            author: '',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/99f/80/99f4158f74eb2e6a90dfdae72c87d288.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Виномания. Наглядный путеводитель по винному миру',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/af2/80/af2173190c4866d9e8db69d82f522c24.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Ребенок в тебе должен обрести дом. Вернуться в детство, чтобы исправить взрослые ошибки',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/f1b/80/f1b201c713b3d28caa1c9c5515463718.webp'
+                        }}
+                    />
+                    <Avatar2
+                    book={{
+                            name: 'Брать, давать и наслаждаться',
+                            imageId:
+                                'https://bombora.ru/upload/adwex.minified/webp/216/80/2167e0d758fbfff6e118da44e4ddd3b7.webp'
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>
