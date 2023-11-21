@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Background color */
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .product-container {
+      background-color: #ffffff; /* Product block color */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-images {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .product-image {
+      max-width: 30%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .product-info {
+      flex: 1;
+      padding-left: 20px;
+    }
+
+    .size-dropdown {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="product-container">
+        <div class="product-images">
+          <img src="https://cdn-images.farfetch-contents.com/20/25/11/91/20251191_50740356_1000.jpg" alt="Product 1" class="product-image">
+          <img src="https://cdn-images.farfetch-contents.com/20/25/11/91/20251191_50740359_1000.jpg" alt="Product 2" class="product-image">
+          <img src="https://cdn-images.farfetch-contents.com/20/25/11/91/20251191_50740355_1000.jpg" alt="Product 3" class="product-image">
+        </div>
+        <div class="product-info">
+          <h2>AMI Paris</h2>
+          <p>Composition:</p>
+<p>Cotton 100%</p>
+
+<p>Product IDs:</p>
+<p>FARFETCH ID: 20251191</p>
+
+<p>Brand style ID: H23BFUSH130CO0031</p>
+          <div class="size-dropdown">
+            <label for="size">Size:</label>
+            <select id="size" class="form-control">
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+          <p><strong>Price:</strong> $99.99</p>
+          <button class="btn btn-primary">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS (required for some Bootstrap components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
