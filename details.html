@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Новинки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Зима/Осень 2024</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Весна/Лето 2024</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Для него</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Для неё</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Филиалы</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+<div id="root"></div>
+</body>
+<!-- This setup is not suitable for production. -->
+<!-- Only use it in development! -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+    import React, { StrictMode } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    export function getImageUrl(person) {
+        return (
+            person.imageId
+        );
+    }
+
+    function Card({ children }) {
+        return (
+            <div className="container">
+                {children}
+            </div>
+        );
+    }
+
+    function Avatar({book, size = 150}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 50}
+                />
+                <p>{book.name}</p>
+            </div>
+        );
+    }
+
+    function Avatar2({book, size = 300}) {
+        return (
+            <div className="a">
+                <img
+                    className="avatar"
+                    src={getImageUrl(book)}
+                    alt={book.name}
+                    width={size}
+                    height={size + 50}
+                />
+                <p>{book.name}</p>
+            </div>
+        );
+    }
+
+
+    export default function Profile() {
+        return (
+            <body>
+            <h1>Бестселлеры</h1>
+            <Card>
+                <Avatar
+                    book={{
+                        name: 'Теория невероятности',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/68e/80/68e071a6699e1268a253f381ca7589f8.webp'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Сила подсознания',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/39c/80/39c57e3438463c8e7a43b0a924017f3a.webp'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Тело помнит все',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/1af/80/1af0d87ec743b2dd782bdbe1b07cdde2.webp'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Женщина, у которой есть план',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/ec9/80/ec9ac048792e61ad2daa9c3bcab35433.webp'
+                    }}
+                />
+                <Avatar
+                    book={{
+                        name: 'Это началось не с тебя',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/308/80/3086d812b6dea0d12e543664eb821e25.webp'
+                    }}
+                />
+            </Card>
+            <h1>Топ 3</h1>
+            <Card>
+                <Avatar2
+                    book={{
+                        name: 'Теория невероятности',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/68e/80/68e071a6699e1268a253f381ca7589f8.webp'
+                    }}
+                />
+                <Avatar2
+                    book={{
+                        name: 'Сила подсознания',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/39c/80/39c57e3438463c8e7a43b0a924017f3a.webp'
+                    }}
+                />
+                <Avatar2
+                    book={{
+                        name: 'Тело помнит все',
+                        imageId: 'https://bombora.ru/upload/adwex.minified/webp/1af/80/1af0d87ec743b2dd782bdbe1b07cdde2.webp'
+                    }}
+                />
+            </Card>
+            </body>
+        );
+    }
+
+
+    const root = createRoot(document.getElementById('root'));
+    root.render(
+        <StrictMode>
+            <Profile />
+        </StrictMode>
+    );
+
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    h3 {
+        margin-top: 0;
+        font-size: 18px;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 16px;
+    }
+
+    h5 {
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    h6 {
+        margin-top: 0;
+        font-size: 12px;
+    }
+
+    code {
+        font-size: 1.2em;
+    }
+
+    ul {
+        padding-inline-start: 20px;
+    }
+
+    ul { list-style-type: none; padding: 0px 10px; }
+    li {
+        margin-bottom: 10px;
+        display: inline-flex;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-item {
+        padding-left: 80px
+    }
+
+    .a {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .card {
+        display: inline-flex;
+        width: fit-content;
+        margin: 5px;
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+        border: 2px solid #aaa;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .avatar {
+        margin: 20px;
+        border-radius: 0%;
+    }
+
+
+</style>
+</html>
