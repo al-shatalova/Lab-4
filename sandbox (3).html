@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8" />
+</head>
 <body>
   <div id="root"></div>
 </body>
@@ -24,12 +27,22 @@ import { useState } from 'react';
 let nextId = 0;
 
 let App = function List() {
+  const data = [
+    { id: 1, name: 'Суслов Андрей', point: 17 },
+    { id: 2, name: 'Губанов Иван', point: 18 },
+    { id: 3, name: 'Назарова Анастасия', point: 20 },
+    { id: 4, name: 'Архипов Илья', point: 15 },
+    { id: 5, name: 'Радченко Глеб', point: 19 },
+    { id: 6, name: 'Скуратов Артем', point: 18 },
+  ];
   const [name, setName] = useState('');
-  const [artists, setArtists] = useState([]);
+  const [artists, setArtists] = useState(data);
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Студенты</h1>
+      <br></br>
+      <br></br>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -39,12 +52,30 @@ let App = function List() {
           ...artists,
           { id: nextId++, name: name }
         ]);
-      }}>Add</button>
-      <ul>
+      }}>Добавить</button>
+      <br></br>
+      <br></br>
+
+      <table>
         {artists.map(artist => (
-          <li key={artist.id}>{artist.name}</li>
+          <tr key={artist.id}>
+            <td>{artist.name}</td>
+            <td>{artist.point}</td>
+            <button onClick={() => {
+              setArtists(
+                      artists.filter(a =>
+                              a.id !== artist.id
+                      )
+              );
+            }}>
+              Удалить
+            </button>
+            <td>
+              <input type="checkbox"></input>
+            </td>
+          </tr>
         ))}
-      </ul>
+      </table>
     </>
   );
 }
@@ -62,10 +93,32 @@ root.render(
   box-sizing: border-box;
 }
 
+table {
+  background-color: #93819b;
+  border-radius: 10px;
+  color: white;
+  border-collapse: collapse;
+  width: 100%;;
+}
+
+button {
+  background-color: #be9999;
+  border: 0px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+tr, td {
+  border: 1px solid #dad8e5;
+}
+
 body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
 }
 
 h1 {
