@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-            name="description"
-            content="Web site created using create-react-app"
-    />
-
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-
-    <title>React App</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
-<div>
-    <h1>Hello</h1>
-</div>
+</body>
+<!-- This setup is not suitable for production. -->
+<!-- Only use it in development! -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
 
 <script>
     import { useState } from 'react';
@@ -63,5 +59,4 @@
     );
 </script>
 
-</body>
 </html>
