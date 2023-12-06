@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Университетский журнал</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react-router-dom@5/umd/react-router-dom.min.js"></script>
+  <script>
+    const { BrowserRouter, Route, Link } = ReactRouterDOM;
+
+    // Компоненты страниц
+    const Home = () => <div>Добро пожаловать в Фин университет!</div>;
+
+    const Schedule = () => {
+      const daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
+      const scheduleData = [
+        ['Математика', 'Физика', 'Литература', 'Физкультура', 'История'],
+        ['Химия', 'Биология', 'Иностранный язык', 'Программирование', 'Музыка'],
+        ['География', 'Искусство', 'Физкультура', 'Математика', 'Литература'],
+        ['Программирование', 'История', 'Химия', 'Физика', 'Биология'],
+        ['Литература', 'Физкультура', 'Математика', 'Иностранный язык', 'История']
+      ];
+
+      return (
+        <div>
+          <h2>Расписание</h2>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>День недели</th>
+                <th>Предметы</th>
+              </tr>
+            </thead>
+            <tbody>
+              {daysOfWeek.map((day, index) => (
+                <tr key={index}>
+                  <td>{day}</td>
+                  <td>{scheduleData[index].join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    };
+
+    const Attendance = () => {
+      const students = ['Иванов', 'Петров', 'Сидоров', 'Козлов', 'Смирнов'];
+      const attendanceData = [
+        [true, false, true, true, false],
+        [true, true, true, true, true],
+        [false, true, false, true, true],
+        [true, true, true, false, true],
+        [false, true, true, true, true]
+      ];
+
+      return (
+        <div>
+          <h2>Журнал посещаемости</h2>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Студент</th>
+                <th>Понедельник</th>
+                <th>Вторник</th>
+                <th>Среда</th>
+                <th>Четверг</th>
+                <th>Пятница</th>
+              </tr>
+            </thead>
+            <tbody>
+              {students.map((student, studentIndex) => (
+                <tr key={studentIndex}>
+                  <td>{student}</td>
+                  {attendanceData[studentIndex].map((isPresent, dayIndex) => (
+                    <td key={dayIndex}>{isPresent ? 'Присутствовал' : 'Отсутствовал'}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    };
+
+    // Основной компонент
+    const App = () => (
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li><Link to="/">Главная</Link></li>
+              <li><Link to="/schedule">Расписание</Link></li>
+              <li><Link to="/attendance">Посещаемость</Link></li>
+            </ul>
+          </nav>
+
+          <hr />
+
+          <Route exact path="/" component={Home} />
+          <Route path="/schedule" component={Schedule} />
+          <Route path="/attendance" component={Attendance} />
+        </div>
+      </BrowserRouter>
+    );
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
