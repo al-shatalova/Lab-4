@@ -14,7 +14,9 @@
     const { BrowserRouter, Route, Link } = ReactRouterDOM;
 
     // Компоненты страниц
-    const Home = () => <div>Добро пожаловать в Фин университет!</div>;
+   function TextHome(){
+      return <div>"Welcome to FU!"</div>
+    }
 
     const Schedule = () => {
       const daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
