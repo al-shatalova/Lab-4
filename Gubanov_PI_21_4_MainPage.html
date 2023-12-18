@@ -28,7 +28,7 @@ let nextId = 0;
 
 let App = function List() {
   const data = [];
-  const [name, setName] = useState('');
+  const [name, setName, setPoint] = useState('');
   const [artists, setArtists] = useState(data);
 
   return (
@@ -40,10 +40,14 @@ let App = function List() {
         value={name}
         onChange={e => setName(e.target.value)}
       />
+      <input
+        value={point}
+        onChange={e => setPoint(e.target.value)}
+      />
       <button onClick={() => {
         setArtists([
           ...artists,
-          { id: nextId++, name: name }
+          { id: nextId++, name: name,  point: point}
         ]);
       }}>Добавить</button>
       <br></br>
