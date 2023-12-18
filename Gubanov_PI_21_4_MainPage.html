@@ -24,21 +24,13 @@
 
     import { useState } from 'react';
 
-    let nextId = 1;
+    let nextId = 0;
 
-    const List = () => {
+    let App = function List() {
+        const data = [];
         const [name, setName] = useState('');
         const [point, setPoint] = useState('');
-        const [artists, setArtists] = useState([]);
-
-        const handleAdd = () => {
-            setArtists([
-                ...artists,
-                { id: nextId++, name: name, point: point }
-            ]);
-            setName('');
-            setPoint('');
-        };
+        const [artists, setArtists] = useState(data);
 
         return (
             <>
@@ -56,7 +48,12 @@
                     placeholder="Балл"
                     type="number"
                 />
-                <button onClick={handleAdd}>Добавить</button>
+                <button onClick={() => {
+                    setArtists([
+                        ...artists,
+                        { id: nextId++, name: name, point: point}
+                    ]);
+                }}>Добавить</button>
                 <br></br>
                 <br></br>
 
@@ -98,7 +95,7 @@
     }
 
     table {
-        background-color: #7ec56a;
+        background-color: #93819b;
         border-radius: 10px;
         color: white;
         border-collapse: collapse;
