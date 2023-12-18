@@ -1,61 +1,165 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
+  <meta charset="utf-8" />
 </head>
 <body>
-<div id="root"></div>
+  <div id="root"></div>
 </body>
 <!-- This setup is not suitable for production. -->
 <!-- Only use it in development! -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
 <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react?dev",
-        "react-dom/client": "https://esm.sh/react-dom/client?dev"
-      }
-    }
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
 </script>
+<script type="text/babel" data-type="module">
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-<script>
-    import { useState } from 'react';
+import { useState } from 'react';
 
-    let nextId = 0;
+let nextId = 0;
 
-    export default function MainPage() {
-        const [name, setName] = useState('');
-        const [artists, setArtists] = useState([]);
+let App = function List() {
+  const data = [
+    { id: 1, name: 'Суслов Андрей', point: 17 },
+    { id: 2, name: 'Губанов Иван', point: 18 },
+    { id: 3, name: 'Назарова Анастасия', point: 20 },
+    { id: 4, name: 'Архипов Илья', point: 15 },
+    { id: 5, name: 'Радченко Глеб', point: 19 },
+    { id: 6, name: 'Скуратов Артем', point: 18 },
+  ];
+  const [name, setName] = useState('');
+  const [artists, setArtists] = useState(data);
 
-        return (
-            <>
-                <h1>Inspiring sculptors:</h1>
-                <input
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <button onClick={() => {
-                    setArtists([
-                        ...artists,
-                        { id: nextId++, name: name }
-                    ]);
-                }}>Add</button>
-                <ul>
-                    {artists.map(artist => (
-                        <li key={artist.id}>{artist.name}</li>
-                    ))}
-                </ul>
-            </>
-        );
-    }
+  return (
+    <>
+      <h1>Студенты</h1>
+      <br></br>
+      <br></br>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => {
+        setArtists([
+          ...artists,
+          { id: nextId++, name: name }
+        ]);
+      }}>Добавить</button>
+      <br></br>
+      <br></br>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-        <React.StrictMode>
-            <MainPage />
-        </React.StrictMode>
-    );
+      <table>
+        {artists.map(artist => (
+          <tr key={artist.id}>
+            <td>{artist.name}</td>
+            <td>{artist.point}</td>
+            <button onClick={() => {
+              setArtists(
+                      artists.filter(a =>
+                              a.id !== artist.id
+                      )
+              );
+            }}>
+              Удалить
+            </button>
+            <td>
+              <input type="checkbox"></input>
+            </td>
+          </tr>
+        ))}
+      </table>
+    </>
+  );
+}
+
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
 </script>
+<style>
+* {
+  box-sizing: border-box;
+}
 
+table {
+  background-color: #93819b;
+  border-radius: 10px;
+  color: white;
+  border-collapse: collapse;
+  width: 100%;;
+}
+
+button {
+  background-color: #be9999;
+  border: 0px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+tr, td {
+  border: 1px solid #dad8e5;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+button { margin-left: 5px; }
+
+</style>
 </html>
