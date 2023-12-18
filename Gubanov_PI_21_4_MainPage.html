@@ -67,27 +67,32 @@
                 <br></br>
 
                 <table>
-                    {artists.map(artist => (
+                    <thead>
                         <tr>
                             <th>ФИО</th>
                             <th>Балл</th>
                             <th>Группа</th>
+                            <th></th>
                         </tr>
-                        <tr key={artist.id}>
-                            <td>{artist.name}</td>
-                            <td>{artist.point}</td>
-                            <td>{artist.group}</td>
-                            <button onClick={() => {
-                                setArtists(
-                                    artists.filter(a =>
-                                        a.id !== artist.id
-                                    )
-                                );
-                            }}>
-                                Удалить
-                            </button>
-                        </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {artists.map(artist => (
+                            <tr key={artist.id}>
+                                <td>{artist.name}</td>
+                                <td>{artist.point}</td>
+                                <td>{artist.group}</td>
+                                <button onClick={() => {
+                                    setArtists(
+                                        artists.filter(a =>
+                                            a.id !== artist.id
+                                        )
+                                    );
+                                }}>
+                                    Удалить
+                                </button>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </>
         );
