@@ -30,6 +30,7 @@
         const data = [];
         const [name, setName] = useState('');
         const [point, setPoint] = useState('');
+        const [group, setGroup] = useState('');
         const [artists, setArtists] = useState(data);
 
         return (
@@ -40,7 +41,7 @@
                 <input
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    placeholder="Имя"
+                    placeholder="ФИО"
                 />
                 <input
                     value={point}
@@ -48,10 +49,17 @@
                     placeholder="Балл"
                     type="number"
                 />
+                <br>
+                <input
+                    value={group}
+                    onChange={e => setPoint(e.target.value)}
+                    placeholder="Группа"
+                />
+                <br>
                 <button onClick={() => {
                     setArtists([
                         ...artists,
-                        { id: nextId++, name: name, point: point}
+                        { id: nextId++, name: name, point: point, group: group}
                     ]);
                 }}>Добавить</button>
                 <br></br>
@@ -62,6 +70,7 @@
                         <tr key={artist.id}>
                             <td>{artist.name}</td>
                             <td>{artist.point}</td>
+                            <td>{artist.group}</td>
                             <button onClick={() => {
                                 setArtists(
                                     artists.filter(a =>
@@ -71,9 +80,6 @@
                             }}>
                                 Удалить
                             </button>
-                            <td>
-                                <input type="checkbox"></input>
-                            </td>
                         </tr>
                     ))}
                 </table>
