@@ -27,14 +27,7 @@ import { useState } from 'react';
 let nextId = 0;
 
 let App = function List() {
-  const data = [
-    { id: 1, name: 'Суслов Андрей', point: 17 },
-    { id: 2, name: 'Губанов Иван', point: 18 },
-    { id: 3, name: 'Назарова Анастасия', point: 20 },
-    { id: 4, name: 'Архипов Илья', point: 15 },
-    { id: 5, name: 'Радченко Глеб', point: 19 },
-    { id: 6, name: 'Скуратов Артем', point: 18 },
-  ];
+  const data = [];
   const [name, setName] = useState('');
   const [artists, setArtists] = useState(data);
 
