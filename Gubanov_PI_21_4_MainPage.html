@@ -68,6 +68,11 @@
 
                 <table>
                     {artists.map(artist => (
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Балл</th>
+                            <th>Группа</th>
+                        </tr>
                         <tr key={artist.id}>
                             <td>{artist.name}</td>
                             <td>{artist.point}</td>
