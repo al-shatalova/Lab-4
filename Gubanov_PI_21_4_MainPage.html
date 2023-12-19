@@ -33,6 +33,11 @@
         const [group, setGroup] = useState('');
         const [artists, setArtists] = useState(data);
 
+        const sortArtistsByName = () => {
+            const sortedArtists = [...artists].sort((a, b) => a.name.localeCompare(b.name));
+            setArtists(sortedArtists);
+        };
+
         return (
             <>
                 <h1>Студенты</h1>
@@ -64,34 +69,36 @@
                     ]);
                 }}>Добавить</button>
                 <br></br>
+                <button onClick={sortArtistsByName}>Сортировать по ФИО</button>
+                <br></br>
                 <br></br>
 
                 <table>
                     <thead>
-                        <tr>
-                            <th>ФИО</th>
-                            <th>Балл</th>
-                            <th>Группа</th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Балл</th>
+                        <th>Группа</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {artists.map(artist => (
-                            <tr key={artist.id}>
-                                <td>{artist.name}</td>
-                                <td>{artist.point}</td>
-                                <td>{artist.group}</td>
-                                <button onClick={() => {
-                                    setArtists(
-                                        artists.filter(a =>
-                                            a.id !== artist.id
-                                        )
-                                    );
-                                }}>
-                                    Удалить
-                                </button>
-                            </tr>
-                        ))}
+                    {artists.map(artist => (
+                        <tr key={artist.id}>
+                            <td>{artist.name}</td>
+                            <td>{artist.point}</td>
+                            <td>{artist.group}</td>
+                            <button onClick={() => {
+                                setArtists(
+                                    artists.filter(a =>
+                                        a.id !== artist.id
+                                    )
+                                );
+                            }}>
+                                Удалить
+                            </button>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </>
